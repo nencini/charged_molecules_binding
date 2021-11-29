@@ -1,0 +1,16 @@
+#OP data for systems with tetraphenyl phosphonium TPP
+
+#CHARMM36 ff for POPC lipids; CHARMM general FF used also for TPP, except for charges that were calculated in Gauisian
+# ECC scaling is used
+
+#1 TPP concentration
+#2,3 alpha OPs
+#4,5 beta OPs
+#6,7 error alpha
+#8,9 error beta
+#10 number of bound paricles; determined by the smallest divergence method; for cut-off 0.475 nm and 30 atoms fulfilling that condition
+
+    0    0.03289    0.03618   -0.07640   -0.07626    0.00116    0.00116    0.00106    0.00106    0.00000
+  140   -0.02049   -0.01338   -0.09132   -0.08775    0.00043    0.00044    0.00041    0.00041   36.73000
+  280   -0.02897   -0.02061   -0.09552   -0.09137    0.00044    0.00044    0.00041    0.00041   47.10600
+  420   -0.02917   -0.02232   -0.09123   -0.08724    0.00045    0.00045    0.00042    0.00043   52.90160

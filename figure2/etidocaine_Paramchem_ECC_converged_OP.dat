@@ -1,0 +1,26 @@
+#OP data for systems with etidocaine ETI - analyzed only from the converged part of trajectory
+# Analyzed by R Nencini; ricky.nencini@helsinki.fi / nencini.ricky@gmail.com
+
+# prosECCo75 ff for POPC lipids; CHARMM general FF used  for ETI, parameters obtained from Paramchem - https://cgenff.umaryland.edu/
+# ECC charged applied also to ETI parameters  
+
+
+#1 concentration [mM]
+#2 number of bound paricles; determined by the smallest divergence method; for cut-off 0.475 nm and 30 atoms fulfilling that condition
+#3 number of all particles
+
+#4 column of zeros
+
+
+#5,7 alpha OPs
+#9,11 beta OPs
+#6,8 error alpha
+#10,12 error beta
+
+
+
+0      0      	    0     0        0.03289 0.00116  0.03618 0.00116  -0.07640 0.00106 -0.07626  0.00106 
+70    24.80430     25     0       -0.00826 0.00088 -0.00220 0.00088  -0.08150 0.00082 -0.07613  0.00083 
+140   49.09210     50     0       -0.03497 0.00066 -0.02720 0.00067  -0.09156 0.00062 -0.08541  0.00063 
+280   89.85990     100     0       -0.07113 0.00053 -0.06320 0.00053  -0.10068 0.00051 -0.09479  0.00051 
+

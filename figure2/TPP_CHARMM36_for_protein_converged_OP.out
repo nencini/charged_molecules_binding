@@ -1,0 +1,17 @@
+# OP data for systems with tetraphenyl phosphonium TPP - analyzed only from the converged part of trajectory
+# Analyzed by R Nencini; ricky.nencini@helsinki.fi / nencini.ricky@gmail.com
+
+# CHARMM36 for POPC lipids; CHARMM protein FF used for phenyl rings of TPP, charge of P set as +1
+# ECC scaling is NOT used
+
+#1 TPP concentration
+#2,3 alpha OPs
+#4,5 beta OPs
+#6,7 error alpha
+#8,9 error beta
+
+
+0 0        0       0     0.03289 0.00116 0.03618 0.00116  -0.07640  0.00106 -0.07626  0.00106 
+140 14.6376 14.6782 0.0515 0.0174 0.0004 0.0232 0.0004 -0.1002 0.0004 -0.1014 0.0004 
+280 20.1162 20.1938 0.1119 0.0112 0.0005 0.0203 0.0005 -0.1057 0.0004 -0.1079 0.0004 
+420 29.4545 29.5131 0.1800 0.0047 0.0005 0.0117 0.0005 -0.1137 0.0005 -0.1147 0.0005 

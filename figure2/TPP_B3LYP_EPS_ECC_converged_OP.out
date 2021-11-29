@@ -1,0 +1,16 @@
+# OP data for systems with tetraphenyl phosphonium TPP - analyzed only from the converged part of trajectory
+# Analyzed by R Nencini; ricky.nencini@helsinki.fi / nencini.ricky@gmail.com
+
+# prosECCo75 ff for POPC lipids; CHARMM general FF used also for TPP, except for charges that were calculated in Gauisian
+# ECC scaling IS used
+
+#1 TPP concentration
+#2,3 alpha OPs
+#4,5 beta OPs
+#6,7 error alpha
+#8,9 error beta
+
+    0    0.03289    0.03618   -0.07640   -0.07626    0.00116    0.00116    0.00106    0.00106
+  140   -0.02376   -0.01568   -0.09224   -0.08933    0.00061    0.00061    0.00057    0.00057
+  280   -0.03195   -0.02235   -0.09697   -0.09295    0.00060    0.00061    0.00057    0.00057
+  420   -0.03265   -0.02591   -0.09303   -0.08834    0.00063    0.00064    0.00060    0.00060

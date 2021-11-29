@@ -1,0 +1,26 @@
+# OP data for systems with etidocaine ETI - 
+# - all the length of simulations used for both OP calculation and number of bound particles calculations 
+
+# Analyzed by R Nencini; ricky.nencini@helsinki.fi / nencini.ricky@gmail.com
+
+#CHARMM36 ff for POPC lipids; CHARMM general FF used  for ETI, parameters obtained from Paramchem - https://cgenff.umaryland.edu/
+
+
+#1 number of bound paricles; determined by the smallest divergence method; for cut-off 0.475 nm and 30 atoms fulfilling that condition
+#2 number of bound paricles; determined by minima in distribution function; according to https://doi.org/10.1021/acschemneuro.1c00140
+
+
+#4,6 alpha OPs
+#8,10 beta OPs
+#5,7 error alpha
+#9,11 error beta
+
+
+
+0        0       0     0.03289 0.00116 0.03618 0.00116  -0.07640  0.00106 -0.07626  0.00106 
+13.0019 13.0013 0.0005 0.0204 0.0008 0.0225 0.0008 -0.0917 0.0007 -0.0898 0.0007 
+26.0017 25.9734 0.0161 0.0062 0.0008 0.0100 0.0008 -0.1031 0.0007 -0.1027 0.0007 
+38.4736 38.4663 0.0321 -0.0111 0.0004 -0.0037 0.0004 -0.1155 0.0004 -0.1138 0.0004 
+39.0043 38.9774 0.0145 -0.0084 0.0008 -0.0019 0.0008 -0.1140 0.0007 -0.1114 0.0007
+61.9091 61.9664 0.0940 -0.0343 0.0004 -0.0256 0.0004 -0.1297 0.0004 -0.1263 0.0004  
+68.0194 67.9788 0.1913 -0.0382 0.0004 -0.0319 0.0004 -0.1315 0.0004 -0.1283 0.0004 
