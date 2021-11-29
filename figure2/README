@@ -1,0 +1,6 @@
+Figure 2 data,
+
+data files ending with "*_converged_OP" are taken from the ending (converged) parts of trajectories
+
+for OP vs number of bound particles plots, all of the simulation is analyzed,
+files end with :  "*_all_OP_vs_bound"
