@@ -1,0 +1,15 @@
+# List of simulations for: etidocaine 
+# Path: /media/nenciric/Ricky2020/simulations/ 
+# Created on: 2021-12-03 
+ 
+#     1 - System 
+#     2 - Start time [ns] 
+#     3 - End time [ns] 
+#     4 - Time step [ps]  
+#     5 - Total length [ns] 
+#     6 - Temperature  
+#     7 - Binding equilibrated after [ps] 
+#     8 - Trajectory size [MB] 
+ 
+etidocaine_POPC_CHARMM_298K_Cl_countra_280mM_19900waters_paramchem_1302        0.0     2000.1      100.0     2000.1      298.0          0       6470 
+etidocaine_POPC_CHARMM_298K_Cl_countra_280mM_19900waters_paramchem_ECC        0.0     1609.3      100.0     1609.3      298.0      500000       5205 

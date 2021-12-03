@@ -1,0 +1,13 @@
+# List of simulations for: TPP 
+# Path: /media/nenciric/Ricky2020/simulations/ 
+# Create on: 2021-12-03 
+ 
+#     1 - System 
+#     2 - Start time [ns] 
+#     3 - End time [ns] 
+#     4 - Time step [ps]  
+#     5 - Total length [ns] 
+#     6 - Temperature  
+#     7 - Binding equilibrated after [ps] 
+#     8 - Trajectory size [MB] 
+ 
