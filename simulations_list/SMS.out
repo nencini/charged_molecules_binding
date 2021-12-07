@@ -11,3 +11,19 @@
 #     7 - Binding equilibrated after [ps] 
 #     8 - Trajectory size [MB] 
  
+SMS_based_PEP1_POPC_298K_Cl_countra_80mM_16000waters                          0.0      768.9      100.0      768.9      298.0     250000       2121 
+SMS_based_PEP2_298K_200POPC_CHARMM36                                          0.0      800.2      100.0      800.2      298.0     100000       2581 
+SMS_based_PEP3_298K_200POPC_CHARMM36                                          0.0      802.3      100.0      802.3      298.0     300000       2583 
+SMS_POPC_CHARMM_298K_Cl_countra_12mM_9200waters                               0.0      284.1      100.0      284.1      298.0     100000        679 
+SMS_POPC_CHARMM_298K_Cl_countra_24mM_9200waters                               0.0      291.2      100.0      291.2      298.0     140000        732 
+SMS_POPC_CHARMM_298K_Cl_countra_33mM_10200waters                              0.0      277.1      100.0      277.1      298.0      50000        778 
+SMS_POPC_CHARMM_298K_Cl_countra_40mM_25000waters                              0.0      166.9      100.0      166.9      298.0     166900        857 
+SMS_POPC_CHARMM_298K_Cl_countra_40mM_25000waters_167                          0.0     2000.1      100.0     2000.1      298.0    2000000      10268 
+SMS_POPC_CHARMM_298K_Cl_countra_41mM_20000waters_overbind                     0.0     1365.5      100.0     1365.5      298.0          0       5933 
+SMS_POPC_CHARMM_298K_Cl_countra_46mM_9600waters                               0.0      270.9      100.0      270.9      298.0     150000        734 
+SMS_POPC_CHARMM_298K_Cl_countra_58mM_9600waters                               0.0      548.6      100.0      548.6      298.0     100000       1484 
+SMS_based_PEP1_POPC_298K_Cl_countra_40mM                                      0.0      916.9      100.0      916.9      298.0     700000       2031 
+SMS_POPC_CHARMM_298K_Cl_countra_70mM_9600waters                               0.0      360.6      100.0      360.6      298.0     190000        953 
+SMS_POPC_CHARMM_298K_Cl_countra_82mM_9600waters                               0.0      754.2      100.0      754.2      298.0     350000       2161 
+SMS_POPC_CHARMM_298K_Cl_countra_94mM_9600waters                               0.0      281.4      100.0      281.4      298.0          ?        774 
+SMS_based_PEP1_POPC_298K_Cl_countra_20mM                                      0.0      491.0      100.0      491.0      298.0     390000       1061 
