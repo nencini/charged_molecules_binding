@@ -1,0 +1,17 @@
+# List of simulations for: dibucaine 
+# Path: /media/nenciric/Ricky2020/simulations/ 
+# Create on: 2021-12-14 
+ 
+#     1 - System 
+#     2 - Start time [ns] 
+#     3 - End time [ns] 
+#     4 - Saving frequency [ps]  
+#     5-13 - alpha1 , error alpha1, alpha2 , error alpha2, beta1 , error beta1, beta2 , error beta2,  
+#     14-15 - Box - Z,  APL 
+ 
+dibucaine_POPC_CHARMM_298K_Cl_countra_104mM_8800waters                            50.0     2000.0        100  12.08  0.74   
+dibucaine_POPC_CHARMM_298K_Cl_countra_123mM                                       50.0     2000.0        100  12.08  0.74   
+dibucaine_POPC_CHARMM_298K_Cl_countra_130mM_8800waters                            50.0     2000.0        100  12.08  0.74   
+dibucaine_POPC_CHARMM_298K_Cl_countra_13mM_8800waters                        Trouble eqil time: 50000, total time: 305900.0 
+ 
+dibucaine_POPC_CHARMM_298K_Cl_countra_156mM_8800waters                       Trouble eqil time: 50000, total time: 581000.0 

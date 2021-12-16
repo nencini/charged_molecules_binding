@@ -1,0 +1,27 @@
+# List of simulations for: SMS 
+# Path: /media/nenciric/Ricky2020/simulations/ 
+# Create on: 2021-12-13 
+ 
+#     1 - System 
+#     2 - Saving frequency [ps]  
+#     3 - Total length [ns] 
+#     4 - Binding equilibrated after [ns]  
+#     5 - Temperature [K] 
+#     6 - Composition 
+ 
+SMS_based_PEP1_POPC_298K_Cl_countra_80mM_16000waters                               100  768.9  250 298.0  POPC:    200,  PEP1:     24,  TIP3:  16347,   CLA:     48, 
+SMS_based_PEP2_298K_200POPC_CHARMM36                                               100  800.2  100 298.0  POPC:    200,  PROA:     10,  TIP3:  12870,   CLA:     20, 
+SMS_based_PEP3_298K_200POPC_CHARMM36                                               100  802.3  300 298.0  POPC:    200,  PROA:     10,  TIP3:  12760,   CLA:     20, 
+SMS_POPC_CHARMM_298K_Cl_countra_12mM_9200waters                                    100  284.1  100 298.0  POPC:    200,   SMS:      2,  TIP3:   9202,   CLA:      4, 
+SMS_POPC_CHARMM_298K_Cl_countra_24mM_9200waters                                    100  291.2  140 298.0  POPC:    200,   SMS:      4,  TIP3:   9016,   CLA:      8, 
+SMS_POPC_CHARMM_298K_Cl_countra_33mM_10200waters                                   100  277.1   50 298.0  POPC:    200,   SMS:      6,  TIP3:  10192,   CLA:     12, 
+SMS_POPC_CHARMM_298K_Cl_countra_40mM_25000waters                                   100  166.9  166 298.0  POPC:    200,   SMS:     18,  TIP3:  25234,   CLA:     36, 
+SMS_POPC_CHARMM_298K_Cl_countra_40mM_25000waters_167                               100 2000.1 2000 298.0  POPC:    200,   SMS:     18,  TIP3:  25234,   CLA:     36, 
+SMS_POPC_CHARMM_298K_Cl_countra_41mM_20000waters_overbind                          100 1365.5    0 298.0  POPC:    200,   SMS:     15,  TIP3:  20000,   CLA:     30, 
+SMS_POPC_CHARMM_298K_Cl_countra_46mM_9600waters                                    100  270.9  150 298.0  POPC:    200,   SMS:      8,  TIP3:   9698,   CLA:     16, 
+SMS_POPC_CHARMM_298K_Cl_countra_58mM_9600waters                                    100  548.6  100 298.0  POPC:    200,   SMS:     10,  TIP3:   9535,   CLA:     20, 
+SMS_based_PEP1_POPC_298K_Cl_countra_40mM                                           100  916.9  700 298.0  POPC:    200,  PEP1:      8,  TIP3:  11632,   CLA:     16, 
+SMS_POPC_CHARMM_298K_Cl_countra_70mM_9600waters                                    100  360.6  190 298.0  POPC:    200,   SMS:     12,  TIP3:   8991,   CLA:     24, 
+SMS_POPC_CHARMM_298K_Cl_countra_82mM_9600waters                                    100  754.2  350 298.0  POPC:    200,   SMS:     14,  TIP3:   9948,   CLA:     28, 
+SMS_POPC_CHARMM_298K_Cl_countra_94mM_9600waters                                    100  281.4    ? 298.0  POPC:    200,   SMS:     16,  TIP3:   9463,   CLA:     32, 
+SMS_based_PEP1_POPC_298K_Cl_countra_20mM                                           100  491.0  390 298.0  POPC:    200,  PEP1:      4,  TIP3:  11238,   CLA:      8, 

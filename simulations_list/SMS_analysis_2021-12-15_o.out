@@ -1,0 +1,29 @@
+# List of simulations for: SMS 
+# Path: /media/nenciric/Ricky2020/simulations/ 
+# Create on: 2021-12-15 
+ 
+#     1 - System 
+#     2 - Start time [ns] 
+#     3 - End time [ns] 
+#     4 - Saving frequency [ps]  
+#     5-13 - alpha1 , error alpha1, alpha2 , error alpha2, beta1 , error beta1, beta2 , error beta2,  
+#     14-15 - Box - Z,  APL 
+ 
+SMS_based_PEP1_POPC_298K_Cl_countra_80mM_16000waters                             250.0      768.8        100  11.36  0.66   
+SMS_based_PEP2_298K_200POPC_CHARMM36                                             100.0      800.1        100  9.90  0.64   
+SMS_based_PEP3_298K_200POPC_CHARMM36                                             300.0      802.2        100  9.70  0.65   
+SMS_POPC_CHARMM_298K_Cl_countra_12mM_9200waters                                  100.0      284.0        100  8.12  0.64   
+SMS_POPC_CHARMM_298K_Cl_countra_24mM_9200waters                                  140.0      291.1        100  7.99  0.65   
+SMS_POPC_CHARMM_298K_Cl_countra_33mM_10200waters                                  50.0      277.0        100  8.50  0.65   
+SMS_POPC_CHARMM_298K_Cl_countra_40mM_25000waters                             Trouble eqil time: 166900, total time: 166900.0 
+ 
+SMS_POPC_CHARMM_298K_Cl_countra_40mM_25000waters_167                            2000.0     2000.0        100  15.27  0.67   
+SMS_POPC_CHARMM_298K_Cl_countra_41mM_20000waters_overbind                          0.0     1365.4        100  12.22  0.70   
+SMS_POPC_CHARMM_298K_Cl_countra_46mM_9600waters                                  150.0      270.8        100  8.14  0.67   
+SMS_POPC_CHARMM_298K_Cl_countra_58mM_9600waters                                  100.0      548.5        100  8.04  0.67   
+SMS_based_PEP1_POPC_298K_Cl_countra_40mM                                         700.0      916.8        100  9.20  0.65   
+SMS_POPC_CHARMM_298K_Cl_countra_70mM_9600waters                                  190.0      360.5        100  7.66  0.69   
+SMS_POPC_CHARMM_298K_Cl_countra_82mM_9600waters                                  350.0      754.1        100  8.06  0.70   
+SMS_POPC_CHARMM_298K_Cl_countra_94mM_9600waters                              Trouble eqil time: ?, total time: 281400.0 
+ 
+SMS_based_PEP1_POPC_298K_Cl_countra_20mM                                         390.0      490.9        100  9.01  0.65  
