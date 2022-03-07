@@ -1,0 +1,74 @@
+
+############################################################################################
+set size 1,1
+set terminal pdf enhanced size 3,5
+set encoding utf8
+set output "OP_etidocaine_repeated_distance.pdf"
+ 
+set yrange [-0.07:-0.0001] 
+set ytics format "%.2f"
+ 
+set key above left maxcols 2 font 'Times,14'
+set key reverse
+set key Left
+
+      
+
+
+#set label format small
+set datafile commentschar "@#$%&"
+set multiplot layout 2,1 
+
+############################################################################## 
+M01 = "set tmargin at screen 0.85; set bmargin at screen 0.475"
+M02 = "set tmargin at screen 0.475; set bmargin at screen 0.1"
+
+####################################################################################################33
+#plot the beta for calcium
+unset xtics
+#set size ratio 0.5
+set xrange [5:82] 
+unset xlabel
+set ylabel "S^{β}_{CH}"  font 'Times,20'
+set logscale x
+set ytics  font 'Times,16'
+
+
+@M01
+
+
+plot "eti_140_swiss.dat" using 1:($6+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") title "CHARMM36, 298K, 140mM",\
+"eti_140_swiss.dat" using 1:($6+0.07640):($7*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle,\
+"eti_140_swiss.dat" using 1:($8+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
+"eti_140_swiss.dat" using 1:($8+0.07626):($9*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
+"eti_280_swiss.dat" using 1:($6+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0000aa") title "CHARMM36, 298K, 280mM",\
+"eti_280_swiss.dat" using 1:($6+0.07640):($7*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0000aa") notitle ,\
+"eti_280_swiss.dat" using 1:($8+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0000aa") notitle ,\
+"eti_280_swiss.dat" using 1:($8+0.07626):($9*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0000aa") notitle ,\
+"eti_420_swiss.dat" using 1:($6+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa0000") title "CHARMM36, 298K, 420mM",\
+"eti_420_swiss.dat" using 1:($6+0.07640):($7*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa0000") notitle ,\
+"eti_420_swiss.dat" using 1:($8+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa0000") notitle ,\
+"eti_420_swiss.dat" using 1:($8+0.07626):($9*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa0000") notitle ,\
+
+
+unset title
+set xtics 2 font 'Times,16'
+set ylabel "S^{α}_{CH}"
+set xlabel "Repeated distance [nm]" font 'Times,20'
+@M02
+plot  "eti_140_swiss.dat" using 1:($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36, 298K",\
+"eti_140_swiss.dat" using 1:($2-0.03289):($3*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36, 298K",\
+"eti_140_swiss.dat" using 1:($4-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
+"eti_140_swiss.dat" using 1:($4-0.03618):($5*2) with yerrorbars  ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
+"eti_280_swiss.dat" using 1:($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0000aa") notitle "CHARMM36, 298K",\
+"eti_280_swiss.dat" using 1:($2-0.03289):($3*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0000aa") notitle "CHARMM36, 298K",\
+"eti_280_swiss.dat" using 1:($4-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0000aa") notitle ,\
+"eti_280_swiss.dat" using 1:($4-0.03618):($5*2) with yerrorbars  ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0000aa") notitle ,\
+"eti_420_swiss.dat" using 1:($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa0000") notitle "CHARMM36, 298K",\
+"eti_420_swiss.dat" using 1:($2-0.03289):($3*2) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa0000") notitle "CHARMM36, 298K",\
+"eti_420_swiss.dat" using 1:($4-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa0000") notitle ,\
+"eti_420_swiss.dat" using 1:($4-0.03618):($5*2) with yerrorbars  ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa0000") notitle ,\
+
+
+
+

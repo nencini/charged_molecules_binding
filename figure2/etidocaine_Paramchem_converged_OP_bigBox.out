@@ -1,0 +1,13 @@
+#OP data for systems with POPC and etidocaine (ETI)  - analyzed only from the converged part of trajectory
+# Analyzed by R Nencini; ricky.nencini@helsinki.fi / nencini.ricky@gmail.com
+
+
+#CHARMM36 ff for POPC lipids; CHARMM general FF used  for ETI, parameters obtained from Paramchem - https://cgenff.umaryland.edu/
+
+
+# approx 177 600 waters, 77nm z-box size, 200 POPC
+# 298 K
+
+#conc #alp1      #alp2       #alp1  err   #alp2 err  #bet1    #bet2  	#bet1 err		#bet2 err
+0	0.03289	0.03618	0	   0    	-0.07640     -0.07626    0 0  0
+140	-0.0194699	-0.009844	0.001188	0.0012266	-0.1228015   -0.1206055  0.000799 0.000821 46.53
