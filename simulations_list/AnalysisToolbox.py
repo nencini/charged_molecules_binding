@@ -273,8 +273,12 @@ class AnalysisToolbox:
             content = yaml.load(yaml_file, Loader=yaml.FullLoader)
         
         self.readme=content
-        self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TIMESTEP']))
-        
+       
+        try:
+            self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TIMESTEP']))
+        except:
+            self.Nframes=len(self.mol.trajectory)
+
         self.system=system
         choose_function = {"box_dimensions": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
                            "order_parameter": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter]}
