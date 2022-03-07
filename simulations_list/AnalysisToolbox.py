@@ -277,7 +277,9 @@ class AnalysisToolbox:
         
         self.system=system
         choose_function = {"box_dimensions": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
-                           "order_parameter": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter]}
+                           "order_parameter": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter],
+                          "binding_coefficient": [self.ini_binding_coefficient,self.binding_coefficient,self.fin_binding_coefficient]}
+                                                 
         
         print(name)
 
@@ -296,11 +298,13 @@ class AnalysisToolbox:
 
             begin_analysis=int(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
             print("going throught the trajectory")
+            self.frames=0
             for self.frame in self.mol.trajectory[begin_analysis:]:
                 last_frame=self.frame.time
                 #print(last_frame)
                 for analyze in analysis:
                     choose_function[analyze][1]()
+                self.frames+=1
                 
             print("exiting trajectory")
             print("test")
@@ -334,6 +338,43 @@ class AnalysisToolbox:
                     
         
 
+    def ini_binding_coefficient(self):
+        """
+        similar initiotion to density
+        collects density data along the z coordinate
+        on the range of the first frame box size.
+        
+        The final result is cut-off to the smallest box size
+        """
+        
+        self.nbin = 200
+        self.c = self.mol.select_atoms('resname POPC')      #selection for centering the profile   
+        box_z = self.mol.dimensions[2] # takes the size of the first frame and uses it for the density calculation
+        self.bsize=box_z/10   # convert to [nm]
+        self.min_z = box_z   # used to search for the min box size to cut off the profile on the edges
+        self.bin_width =  2*self.bsize/ self.nbin #     # bin width, used to be d
+        self.boxH = self.bsize # self.bsize used instead of boxH
+        self.z_coor = np.linspace(-self.bsize,self.bsize,self.nbin+1)[:-1] + self.bin_width/2 # x changed to z_coor
+        
+        self.fz_water = np.zeros(self.nbin)
+        self.fz_lipid = np.zeros(self.nbin)        
+        self.fz_particle = np.zeros(self.nbin)
+    
+        self.water = self.mol.select_atoms('resname TIP3')
+        self.lipid = self.mol.select_atoms('resname POPC')
+        
+        resnames={"etidocaine":"resname ETI","dibucaine":"resname DIB", "SMS": "resname SMS", "TPP":"resname TPA"}
+        
+        
+        self.particleName = resnames[self.system]
+        
+        self.particle = self.mol.select_atoms(self.particleName)
+    
+        self.wght_water=np.ones(self.water.atoms.names.shape[0])
+        self.wght_lipid=np.ones(self.lipid.atoms.names.shape[0])   
+        self.wght_particle=np.ones(self.particle.atoms.names.shape[0])
+               
+    
     def ini_box_dimensions(self):
         """At the moment assumes 100 lipids per leaflet"""
 
@@ -397,6 +438,29 @@ class AnalysisToolbox:
         print("Ini OP sucessfuly done")
 
     
+    def density(self,atoms_for_density,atom_weights):
+    
+        crds_of_atoms = (atoms_for_density.atoms.positions[:,2] - self.box_z/2)/10                          
+        vbin = self.bin_width*np.prod(self.current_dimentions[:2])/100      
+        return np.histogram(crds_of_atoms,bins=self.nbin,range=(-self.boxH,self.boxH),weights=atom_weights/vbin)[0]
+ 
+    def binding_coefficient(self):
+        self.current_dimentions = self.mol.trajectory.ts.dimensions
+        self.box_z = self.current_dimentions[2]
+        if self.box_z/10<self.min_z:
+            self.min_z=self.box_z/10
+                
+
+        crds = self.mol.atoms.positions
+        ctom = self.c.atoms.center_of_mass()[2]
+        crds[:,2] += self.box_z/2 - ctom
+        self.mol.atoms.positions = crds
+        self.mol.atoms.pack_into_box()
+
+        self.fz_water += self.density(self.water,self.wght_water)
+        self.fz_lipid +=  self.density(self.lipid,self.wght_lipid)
+        self.fz_particle +=  self.density(self.particle,self.wght_particle)
+        
     def box_dimensions(self):
         current_box_z = self.frame.dimensions[2]/10
         current_box_x = self.frame.dimensions[0]/10
@@ -460,6 +524,59 @@ class AnalysisToolbox:
         self.readme['ANALYSIS']['BOX_DIMENSIONS']['AREA_PER_LIPID']=float(average_dimensions[2]**2/100) 
        
 
+    
+    def fin_binding_coefficient(self):
+        self.fz_water /= self.frames
+        self.fz_lipid /=  self.frames
+        self.fz_particle /=  self.frames
+        
+        """Get the indexes of the final density data where all the time steps contribute
+        In other words, take the coordinates of the smalest box from the simulation"""
+        final_FF_start=int(np.round(self.nbin/2-self.min_z/self.bin_width/2))+1
+        final_FF_end=int(np.round(self.nbin/2+self.min_z/self.bin_width/2))-1
+        
+        data = np.vstack((self.z_coor,self.fz_water,self.fz_lipid,self.fz_particle)).transpose()
+        density = data[final_FF_start+1:final_FF_end-1,:]
+        
+        minus_water=0
+        minus_lipid=0
+        plus_water=0
+        plus_lipid=0
+        count_minus_water=0
+        count_minus_lipid=0
+        count_plus_water=0
+        count_plus_lipid=0
+
+        for density_slice in density:
+            if density_slice[0]<0:
+                if density_slice[2]<density_slice[1]:
+                    minus_water+=density_slice[3]/density[0,3]
+                    count_minus_water+=1
+                else:
+                    minus_lipid+=density_slice[3]/density[0,3]
+                    count_minus_lipid+=1
+            else:
+                if density_slice[2]<density_slice[1]:
+                    plus_water+=density_slice[3]/density[0,3]
+                    count_plus_water+=1
+                else:
+                    plus_lipid+=density_slice[3]/density[0,3]
+                    count_plus_lipid+=1
+
+                    
+        if not 'BINDING_COEFFICIENT' in self.readme['ANALYSIS']:
+            self.readme['ANALYSIS']['BINDING_COEFFICIENT']={}
+        
+
+        self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']={}
+        self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['ANALYZED']=self.today
+        self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['MINUS_VALUE']=float(minus_lipid/minus_water*count_minus_water/count_minus_lipid)
+        self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['PLUS_VALUE']=float(plus_lipid/plus_water*count_plus_water/count_plus_lipid)
+        
+        print(minus_lipid/minus_water*count_minus_water/count_minus_lipid)
+      
+        
+        
         
 def box_dimensions(topology,trajectory,output,system):
     
@@ -485,6 +602,7 @@ def box_dimensions(topology,trajectory,output,system):
     with open(output+'_boxSizes.out', 'w') as f:
         np.savetxt(f, box_sizes,fmt='%8.4f  %.8f %.8f')
 
+    
             
 
 """Go through all simulations and calculate OP and box dimentions"""
