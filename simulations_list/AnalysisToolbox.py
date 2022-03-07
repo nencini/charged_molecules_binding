@@ -273,12 +273,8 @@ class AnalysisToolbox:
             content = yaml.load(yaml_file, Loader=yaml.FullLoader)
         
         self.readme=content
-       
-        try:
-            self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TIMESTEP']))
-        except:
-            self.Nframes=len(self.mol.trajectory)
-
+        self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
+        
         self.system=system
         choose_function = {"box_dimensions": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
                            "order_parameter": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter]}
@@ -298,7 +294,7 @@ class AnalysisToolbox:
             with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
                 f.write(" \n")
 
-            begin_analysis=int(int(self.readme['BINDINGEQ'])/int(self.readme['TIMESTEP']))
+            begin_analysis=int(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
             print("going throught the trajectory")
             for self.frame in self.mol.trajectory[begin_analysis:]:
                 last_frame=self.frame.time
@@ -307,19 +303,23 @@ class AnalysisToolbox:
                     choose_function[analyze][1]()
                 
             print("exiting trajectory")
+            print("test")
             with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
                 f.write("{:75} {:>10} {:>10} {:>10} ".format(
-                    name,int(self.readme['BINDINGEQ'])/1000,last_frame/1000,int(self.readme['TIMESTEP'])))
+                    name,int(self.readme['BINDINGEQ'])/1000,last_frame/1000,int(self.readme['TRAJECTORY']['TIMESTEP'])))
         
             for analyze in analysis:
                 choose_function[analyze][2]()
-        except:
+            print("exit output")
+        except Exception as e:
+            print(e)
             print("some trouble")
+            print("test 2")
             with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
                 f.write("{:75}  Trouble ".format(name))
             try:
                 with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
-                    f.write("eqil time: {}, total time: {} \n".format(self.readme['BINDINGEQ'],self.readme['TRJLENGTH']))
+                    f.write("eqil time: {}, total time: {} \n".format(self.readme['BINDINGEQ'],self.readme['TRAJECTORY']['LENGTH']))
             except:
                 pass
             
@@ -356,9 +356,10 @@ class AnalysisToolbox:
         """
         
         print("Make molecules whole in the trajectory")
-        os.system('echo System | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o ' + self.output + ' -pbc mol ' ) # -b ' + str(EQtime))
-        self.mol = mda.Universe(self.topology,self.output+'.xtc')
-        self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TIMESTEP']))
+        os.system('echo POPC | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o lipids.gro -pbc mol -b 0 -e 0 ' ) # -b ' + str(EQtime))
+        os.system('echo POPC | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o ' + self.output + ' -pbc mol ' ) # -b ' + str(EQtime))
+        self.mol = mda.Universe('lipids.gro',self.output+'.xtc')
+        self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
         
         self.ordPars = {}
 
@@ -392,6 +393,8 @@ class AnalysisToolbox:
         
             self.Nres=len(self.op.selection)
             self.op.traj= [0]*self.Nres
+        
+        print("Ini OP sucessfuly done")
 
     
     def box_dimensions(self):
@@ -418,7 +421,7 @@ class AnalysisToolbox:
                 self.readme['ANALYSIS']['ORDER_PARAMETER']={}
         with open(self.output+ "_order_parameter_" + str(self.today),"w") as f:
             f.write("Order parameter analysis \n")
-            f.write("Analyzed from {} to {} ns. With saving frequency {} ps.".format(int(self.readme['BINDINGEQ'])/1000,int(self.readme['TRJLENGTH'])/1000,int(self.readme['TIMESTEP'])))
+            f.write("Analyzed from {} to {} ns. With saving frequency {} ps.".format(int(self.readme['BINDINGEQ'])/1000,int(self.readme['TRAJECTORY']['LENGTH'])/1000,int(self.readme['TRAJECTORY']['TIMESTEP'])))
             f.write("# OP_name    resname    atom1    atom2    OP_mean   OP_stddev   OP_err.est. \n\
 #--------------------------------------------------------------------------------------------\n" )
             for self.op in self.ordPars.values():
@@ -436,6 +439,7 @@ class AnalysisToolbox:
                 except:
                     print("problem with writing OPs to readme")
         os.system('rm ' + self.output + '.xtc' ) 
+        os.system('rm lipids.gro' ) 
         
         
         
@@ -480,7 +484,8 @@ def box_dimensions(topology,trajectory,output,system):
         
     with open(output+'_boxSizes.out', 'w') as f:
         np.savetxt(f, box_sizes,fmt='%8.4f  %.8f %.8f')
-        
+
+            
 
 """Go through all simulations and calculate OP and box dimentions"""
 for file in os.listdir(folder_path):
