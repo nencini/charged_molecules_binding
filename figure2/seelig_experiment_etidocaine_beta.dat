@@ -1,0 +1,15 @@
+#experimental data from seeligs "Biochimica et Biophysica Acta 939 (1988) 267-276 " 298 K
+#1 bulk concentration of etidocaine [mM]
+#2 bound etidocaine/popc [mol/mol] 
+#3 quadrupole splitting - alpha
+#4 recalculated for system concentration
+
+0   0     5.5  0        #data obtained from Biochemistry,1984 23, 17, 3913-3920, 313K
+18.4 0.104 7.18 24.9
+19.8 0.112 7.28 26.8
+41.4 0.156 7.86 50.85
+87.0 0.198 8.79 99.375
+88.2 0.204 8.74 100.95
+138  0.230 9.28 152.4
+138.7 0.234 9.23 153.235
+
