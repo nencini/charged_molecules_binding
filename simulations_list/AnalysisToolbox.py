@@ -387,14 +387,14 @@ class AnalysisToolbox:
             self.min_z=self.box_z/10
                 
         #deal with the one problematic simulation
-        crds = self.mol.atoms.positions+100
-        self.mol.atoms.positions= crds
-        self.mol.atoms.pack_into_box()
+        #crds = self.mol.atoms.positions+100
+        #self.mol.atoms.positions= crds
+        #self.mol.atoms.pack_into_box()
 
-        self.c = self.mol.select_atoms("resname POPC")
+        #self.c = self.mol.select_atoms("resname POPC")
 
         #end uncomment the following line when deleting the above
-        # crds = self.mol.atoms.positions
+        crds = self.mol.atoms.positions
 
         ctom = self.c.atoms.center_of_mass()[2]
         crds[:,2] += self.box_z/2 - ctom
