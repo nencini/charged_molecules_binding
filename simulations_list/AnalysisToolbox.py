@@ -632,14 +632,14 @@ def box_dimensions(topology,trajectory,output,system):
             
 
 """Go through all simulations and calculate OP and box dimentions"""
-for file in os.listdir(folder_path):
-    for system in systems:
-        initialize_output_analyze(system,folder_path)
+#for file in os.listdir(folder_path):
+#    for system in systems:
+#        initialize_output_analyze(system,folder_path)
 
 
-for file in os.listdir(folder_path):
-    input_corr_file = folder_path+os.fsdecode(file)
-    for system in systems:
-        if fnmatch.fnmatch(os.fsdecode(file), "*"+system+"*"):
-            AnalysisToolbox(folder_path,os.fsdecode(file),system,["order_parameter","box_dimensions"])
+#for file in os.listdir(folder_path):
+#    input_corr_file = folder_path+os.fsdecode(file)
+#    for system in systems:
+#        if fnmatch.fnmatch(os.fsdecode(file), "*"+system+"*"):
+#            AnalysisToolbox(folder_path,os.fsdecode(file),system,["order_parameter","box_dimensions"])
 
