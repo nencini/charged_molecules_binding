@@ -1,0 +1,39 @@
+set size 1,1
+set terminal pdf enhanced size 5,3.8
+set encoding utf8
+set output "binding_vs_conc_19_11_2021.pdf"
+ 
+
+set ytics format "%.2f"
+ 
+set key above left maxcols 2 font 'Times,18'
+set key reverse
+set key Left
+
+set logscale x      
+#set xrange [:1000]
+
+#set label format small
+set datafile commentschar "@#$%&"
+
+
+set xlabel "Equilibrium concentration [mM]" font 'Times,18'
+set ylabel "Bound particles [mol/mol]" font 'Times,18'
+set xtics font 'Times,18'
+set ytics font 'Times,18'
+
+
+set label 1 "660 M^{-1}" at graph 0.3, 0.72 tc lt 1 font 'Times,18'
+set label 2 "11 M^{-1}" at graph 0.6, 0.63 tc lt 3 font 'Times,18'
+set label 3 "14 M^{-1}" at graph 0.85, 0.92 tc rgb("#000000") font 'Times,18'
+set label 4 "21 M^{-1}" at graph 0.8, 0.2 tc lt 2 font 'Times,18'
+
+set label 6 "80 M^{-1}" at graph 0.18, 0.11 tc lt 4 font 'Times,18'
+
+plot "exp_dibucaine.dat" using 1:2 with linespoints lt 1 pt 5 title "Dibucaine ^{+}" ,\
+     "exp_sms.dat" using 1:2 with linespoints lt 4 pt 5 title "SMS ^{2+}" ,\
+     "exp_etidocaine.dat" using 1:2 with linespoints  pt 5 title "Etidocaine ^{+} " ,\
+     "exp_calcium.dat" using ($1*1000):3 with linespoints ls 5 lc rgb("#000000") title "Calcium ^{2+}" ,\
+     "exp_tpp.dat" using 1:($2/1000) with linespoints lt 2 pt 5  title "TPP ^{+}" ,\
+     
+     
