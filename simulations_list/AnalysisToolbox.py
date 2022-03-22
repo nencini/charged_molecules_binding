@@ -255,7 +255,6 @@ def initialize_output_analyze(system,folder_path):
 
 
             
-            
 """Analysis of different stuff - to be developed"""
 class AnalysisToolbox:
     def __init__(self,path,name,system,analysis):
@@ -266,17 +265,20 @@ class AnalysisToolbox:
         print(self.mol)
         self.output = name
         self.today = str(date.today())
-
+        self.path=path
+        self.name=name
         
         readme = path+name+ "/README.yaml"
         with open(readme) as yaml_file:
             content = yaml.load(yaml_file, Loader=yaml.FullLoader)
         
         self.readme=content
-        
         self.system=system
-        choose_function = {"box_dimensions": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
-                           "order_parameter": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter],
+        
+        self.check_for_latest_files()
+        
+        choose_function = {"BOX_DIMENSIONS": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
+                           "ORDER_PARAMETER": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter],
                           "binding_coefficient": [self.ini_binding_coefficient,self.binding_coefficient,self.fin_binding_coefficient]}
                                                  
         
@@ -291,31 +293,35 @@ class AnalysisToolbox:
             #probably for OP, should work without it here
             #self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
         
-            for analyze in analysis:
-                choose_function[analyze][0]()
-
-            
-            with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
-                f.write(" \n")
-
-            begin_analysis=int(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
-            print("going throught the trajectory")
-            self.frames=0
-            for self.frame in self.mol.trajectory[begin_analysis:]:
-                last_frame=self.frame.time
-                #print(last_frame)
+            """For whathever reason does not work withou the outer loop. IT SHOULD though!!"""
+            for i in range(0,len(analysis)):
                 for analyze in analysis:
-                    choose_function[analyze][1]()
-                self.frames+=1
+                    if self.readme["ANALYSIS"][analyze]:
+                        if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
+                            analysis.remove(analyze)
+           
+            if analysis==[]:
+                pass
+            else:
+                for analyze in analysis:
+                    choose_function[analyze][0]()
+
+                begin_analysis=int(int(self.readme['BINDINGEQ'])/int(self.readme["FILES"]['xtc']['TIMESTEP']))
+                print("going throught the trajectory")
+                self.frames=0
                 
-            print("exiting trajectory")
-            with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
-                f.write("{:75} {:>10} {:>10} {:>10} ".format(
-                    name,int(self.readme['BINDINGEQ'])/1000,last_frame/1000,int(self.readme['TRAJECTORY']['TIMESTEP'])))
-        
-            for analyze in analysis:
-                choose_function[analyze][2]()
-            print("exit output")
+                for self.frame in self.mol.trajectory[begin_analysis:]:
+                    last_frame=self.frame.time
+
+                    for analyze in analysis:
+                        choose_function[analyze][1]()
+                    self.frames+=1
+                
+                print("exiting trajectory, writing output ...")
+            
+                for analyze in analysis:
+                    choose_function[analyze][2]()
+                print("exit output")
         except Exception as e:
             print(e)
             print("some trouble")
@@ -324,7 +330,7 @@ class AnalysisToolbox:
                 f.write("{:75}  Trouble ".format(name))
             try:
                 with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
-                    f.write("eqil time: {}, total time: {} \n".format(self.readme['BINDINGEQ'],self.readme['TRAJECTORY']['LENGTH']))
+                    f.write("eqil time: {}, total time: {} \n".format(self.readme['BINDINGEQ'],self.readme["FILES"]['xtc']['LENGTH']))
             except:
                 pass
             
@@ -336,8 +342,41 @@ class AnalysisToolbox:
              
         with open(readme, 'w') as f:
             yaml.dump(self.readme,f, sort_keys=False)
-                    
+    
+    
+    ###############
+    # MODIFICATIONS
+    ###############
+    
+    def check_for_latest_files(self):
+        files_to_consider=["xtc","edr","tpr","top","mdp","ndx","gro","cpt","log"]
+        sim=self.readme
+        if not "FILES" in sim:
+            sim["FILES"]={}
+        for file in files_to_consider:
+            if not file in sim["FILES"]:
+                sim["FILES"][file]={}
+    
+            file_adress = self.path+self.name+"/"+self.name+"."+file
+            sim["FILES"][file]["NAME"] = self.name+"."+file
+    
+            try:
+                timepre=os.path.getmtime(file_adress)
+                file_mod = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timepre))
+                sim["FILES"][file]["SIZE"]=os.path.getsize(file_adress)/1048576
+                sim["FILES"][file]["MODIFIED"] = file_mod
+            except:
+                sim["FILES"][file]["SIZE"]= "none"
+                sim["FILES"][file]["MODIFIED"] = "none"
         
+        Nframes=len(self.mol.trajectory)
+        timestep = self.mol.trajectory.dt
+        trj_length = Nframes * timestep
+        
+        sim["FILES"]["xtc"]['TIMESTEP'] = timestep
+        sim["FILES"]['xtc']['LENGTH'] = trj_length
+                
+                
     ############
     # BINDING COEFFICIENT
     ############
@@ -386,16 +425,8 @@ class AnalysisToolbox:
         if self.box_z/10<self.min_z:
             self.min_z=self.box_z/10
                 
-        #deal with the one problematic simulation
-        #crds = self.mol.atoms.positions+100
-        #self.mol.atoms.positions= crds
-        #self.mol.atoms.pack_into_box()
 
-        #self.c = self.mol.select_atoms("resname POPC")
-
-        #end uncomment the following line when deleting the above
         crds = self.mol.atoms.positions
-
         ctom = self.c.atoms.center_of_mass()[2]
         crds[:,2] += self.box_z/2 - ctom
         self.mol.atoms.positions = crds
@@ -449,8 +480,8 @@ class AnalysisToolbox:
         if not 'BINDING_COEFFICIENT' in self.readme['ANALYSIS']:
             self.readme['ANALYSIS']['BINDING_COEFFICIENT']={}
         
-
         self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']={}
+        self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['FROM_XTC']=self.readme["FILES"]["xtc"]["MODIFIED"]
         self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['ANALYZED']=self.today
         self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['MINUS_VALUE']=float(minus_lipid/minus_water*count_minus_water/count_minus_lipid)
         self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['PLUS_VALUE']=float(plus_lipid/plus_water*count_plus_water/count_plus_lipid)
@@ -465,6 +496,7 @@ class AnalysisToolbox:
     
     def ini_box_dimensions(self):
         """At the moment assumes 100 lipids per leaflet"""
+        print("Box dimensions will be analyzed")
 
         self.box_sizes=[]
         
@@ -487,6 +519,7 @@ class AnalysisToolbox:
         if not 'BOX_DIMENSIONS' in self.readme['ANALYSIS']:
             self.readme['ANALYSIS']['BOX_DIMENSIONS']={}
         
+        self.readme['ANALYSIS']['BOX_DIMENSIONS']['FROM_XTC']=self.readme["FILES"]["xtc"]["MODIFIED"]
         self.readme['ANALYSIS']['BOX_DIMENSIONS']['ANALYZED']=self.today
         self.readme['ANALYSIS']['BOX_DIMENSIONS']['REPEAT_DISTANCE']=float(average_dimensions[1])
         self.readme['ANALYSIS']['BOX_DIMENSIONS']['AREA_PER_LIPID']=float(average_dimensions[2]**2/100) 
@@ -508,11 +541,12 @@ class AnalysisToolbox:
         with OrderParameters class instances
         """
         
+        print("Order parameter will be analyzed")
         print("Make molecules whole in the trajectory")
         os.system('echo POPC | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o lipids.gro -pbc mol -b 0 -e 0 ' ) # -b ' + str(EQtime))
         os.system('echo POPC | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o ' + self.output + ' -pbc mol ' ) # -b ' + str(EQtime))
         self.mol = mda.Universe('lipids.gro',self.output+'.xtc')
-        self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
+        self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme["FILES"]['xtc']['TIMESTEP']))
         
         self.ordPars = {}
 
@@ -567,7 +601,7 @@ class AnalysisToolbox:
                 self.readme['ANALYSIS']['ORDER_PARAMETER']={}
         with open(self.output+ "_order_parameter_" + str(self.today),"w") as f:
             f.write("Order parameter analysis \n")
-            f.write("Analyzed from {} to {} ns. With saving frequency {} ps.".format(int(self.readme['BINDINGEQ'])/1000,int(self.readme['TRAJECTORY']['LENGTH'])/1000,int(self.readme['TRAJECTORY']['TIMESTEP'])))
+            f.write("Analyzed from {} to {} ns. With saving frequency {} ps.".format(int(self.readme['BINDINGEQ'])/1000,int(self.readme["FILES"]['xtc']['LENGTH'])/1000,int(self.readme["FILES"]['xtc']['TIMESTEP'])))
             f.write("# OP_name    resname    atom1    atom2    OP_mean   OP_stddev   OP_err.est. \n\
 #--------------------------------------------------------------------------------------------\n" )
             for self.op in self.ordPars.values():
@@ -580,6 +614,7 @@ class AnalysisToolbox:
                     g.write("{: 2.5f} {: 2.5f}  ".format(
                         self.op.mean, self.op.stem))
                 try:
+                    self.readme['ANALYSIS']['ORDER_PARAMETER']['FROM_XTC']=self.readme["FILES"]["xtc"]["MODIFIED"]
                     self.readme['ANALYSIS']['ORDER_PARAMETER']['ANALYZED']=self.today
                     self.readme['ANALYSIS']['ORDER_PARAMETER'][self.op.name]=float(self.op.mean)
                     self.readme['ANALYSIS']['ORDER_PARAMETER'][self.op.name+"_error"]=float(self.op.stem)
@@ -638,7 +673,8 @@ def box_dimensions(topology,trajectory,output,system):
         
     with open(output+'_boxSizes.out', 'w') as f:
         np.savetxt(f, box_sizes,fmt='%8.4f  %.8f %.8f')
-            
+
+                
 
 """Go through all simulations and calculate OP and box dimentions"""
 #for file in os.listdir(folder_path):
