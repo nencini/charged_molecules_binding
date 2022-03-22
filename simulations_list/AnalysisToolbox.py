@@ -487,7 +487,7 @@ class AnalysisToolbox:
         if not 'BOX_DIMENSIONS' in self.readme['ANALYSIS']:
             self.readme['ANALYSIS']['BOX_DIMENSIONS']={}
         
-
+        self.readme['ANALYSIS']['BOX_DIMENSIONS']['ANALYZED']=self.today
         self.readme['ANALYSIS']['BOX_DIMENSIONS']['REPEAT_DISTANCE']=float(average_dimensions[1])
         self.readme['ANALYSIS']['BOX_DIMENSIONS']['AREA_PER_LIPID']=float(average_dimensions[2]**2/100) 
        
@@ -580,6 +580,7 @@ class AnalysisToolbox:
                     g.write("{: 2.5f} {: 2.5f}  ".format(
                         self.op.mean, self.op.stem))
                 try:
+                    self.readme['ANALYSIS']['ORDER_PARAMETER']['ANALYZED']=self.today
                     self.readme['ANALYSIS']['ORDER_PARAMETER'][self.op.name]=float(self.op.mean)
                     self.readme['ANALYSIS']['ORDER_PARAMETER'][self.op.name+"_error"]=float(self.op.stem)
                 except:
