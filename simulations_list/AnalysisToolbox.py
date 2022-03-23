@@ -295,6 +295,15 @@ class AnalysisToolbox:
             #self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
         
             """For whathever reason does not work withou the outer loop. IT SHOULD though!!"""
+            
+            if not 'BINDINGEQ' in self.readme:
+                analysis=[]
+            else:
+                try:
+                    int(self.readme['BINDINGEQ'])
+                except:
+                    analysis=[]
+            
             for i in range(0,len(analysis)):
                 for analyze in analysis:
                     print("check if analyzed: {}".format(analyze))
