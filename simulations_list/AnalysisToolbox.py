@@ -299,8 +299,9 @@ class AnalysisToolbox:
                 for analyze in analysis:
                     print("check if analyzed: {}".format(analyze))
                     if analyze in self.readme["ANALYSIS"]:
-                        if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
-                            analysis.remove(analyze)
+                        if "FROM_XTC" in self.readme["ANALYSIS"][analyze]:
+                            if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
+                                analysis.remove(analyze)
            
             if analysis==[]:
                 pass
