@@ -12,9 +12,9 @@
 ; Include forcefield parameters
 #include "toppar/forcefield.itp"
 #include "toppar/eti.prm"
-#include "toppar/eti.itp"
-#include "toppar/POPC.itp"
-#include "toppar/CLA.itp"
+#include "toppar/eti_ECC.itp"
+#include "toppar/POPC_charge075_onP_and_on_N.itp"
+#include "toppar/ions_ECC.itp"
 #include "toppar/TIP3.itp"
 
 
@@ -27,6 +27,6 @@ Title
 POPC  	         200
 ETI              444
 TIP3          177600
-CLA              444
+Cl_2s            444
 
 
