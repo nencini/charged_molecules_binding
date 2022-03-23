@@ -11,6 +11,7 @@ import gc
 import math
 import warnings
 import re
+import time
 
 from optparse import OptionParser
 from collections import OrderedDict
@@ -296,7 +297,8 @@ class AnalysisToolbox:
             """For whathever reason does not work withou the outer loop. IT SHOULD though!!"""
             for i in range(0,len(analysis)):
                 for analyze in analysis:
-                    if self.readme["ANALYSIS"][analyze]:
+                    print("check if analyzed: {}".format(analyze))
+                    if analyze in self.readme["ANALYSIS"]:
                         if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
                             analysis.remove(analyze)
            
