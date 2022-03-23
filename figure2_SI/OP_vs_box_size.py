@@ -6,7 +6,7 @@ from datetime import date
 today = date.today()
 
 
-concentrations=["30mM","70mM","140mM","280mM","420mM","1968mM"]
+concentrations=["30mM","35mM","70mM","140mM","280mM","420mM","1968mM"]
 folder_path="/media/nenciric/Ricky20201/simulations/"
 waters=["5200w","5985w","7581w","8800w","9975w","11252w","19900w","20000w","177600w"]
 
