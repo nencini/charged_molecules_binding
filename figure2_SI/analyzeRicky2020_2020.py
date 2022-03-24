@@ -34,3 +34,15 @@ for file in os.listdir(folder_path):
     for system in systems:
         if fnmatch.fnmatch(os.fsdecode(file), "*"+system+"*"):
             AT.AnalysisToolbox(folder_path,os.fsdecode(file),system,["ORDER_PARAMETER","BOX_DIMENSIONS"])
+
+
+folder_path="/media/nenciric/Ricky20201/simulations/"
+systems=["etidocaine","TPP","SMS","dibucaine"]
+
+
+for file in os.listdir(folder_path):
+    input_corr_file = folder_path+os.fsdecode(file)
+    for system in systems:
+        if fnmatch.fnmatch(os.fsdecode(file), "*"+system+"*"):
+            AT.AnalysisToolbox(folder_path,os.fsdecode(file),system,["ORDER_PARAMETER","BOX_DIMENSIONS"])
+                                        
