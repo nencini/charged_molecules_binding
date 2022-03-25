@@ -1,0 +1,1293 @@
+
+Inactive Modules:
+  1) openblas/0.3.10     2) openmpi/4.0.3
+
+The following have been reloaded with a version change:
+  1) gcc/9.3.0 => gcc/10.3.0
+
+
+Activating Modules:
+  1) openmpi/4.1.0
+
+                      :-) GROMACS - gmx mdrun, 2021.2 (-:
+
+                            GROMACS is written by:
+     Andrey Alekseenko              Emile Apol              Rossen Apostolov     
+         Paul Bauer           Herman J.C. Berendsen           Par Bjelkmar       
+       Christian Blau           Viacheslav Bolnykh             Kevin Boyd        
+     Aldert van Buuren           Rudi van Drunen             Anton Feenstra      
+    Gilles Gouaillardet             Alan Gray               Gerrit Groenhof      
+       Anca Hamuraru            Vincent Hindriksen          M. Eric Irrgang      
+      Aleksei Iupinov           Christoph Junghans             Joe Jordan        
+    Dimitrios Karkoulis            Peter Kasson                Jiri Kraus        
+      Carsten Kutzner              Per Larsson              Justin A. Lemkul     
+       Viveca Lindahl            Magnus Lundborg             Erik Marklund       
+        Pascal Merz             Pieter Meulenhoff            Teemu Murtola       
+        Szilard Pall               Sander Pronk              Roland Schulz       
+       Michael Shirts            Alexey Shvetsov             Alfons Sijbers      
+       Peter Tieleman              Jon Vincent              Teemu Virolainen     
+     Christian Wennberg            Maarten Wolf              Artem Zhmurov       
+                           and the project leaders:
+        Mark Abraham, Berk Hess, Erik Lindahl, and David van der Spoel
+
+Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+Copyright (c) 2001-2019, The GROMACS development team at
+Uppsala University, Stockholm University and
+the Royal Institute of Technology, Sweden.
+check out http://www.gromacs.org for more information.
+
+GROMACS is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; either version 2.1
+of the License, or (at your option) any later version.
+
+GROMACS:      gmx mdrun, version 2021.2
+Executable:   /appl/spack/v016/install-tree/gcc-10.3.0/gromacs-2021.2-3mbrq7/bin/gmx_mpi
+Data prefix:  /appl/spack/v016/install-tree/gcc-10.3.0/gromacs-2021.2-3mbrq7
+Working dir:  /scratch/project_2001058/nencini/etidocaine/etidocaine_POPC_CHARMM_298K_Cl_countra_35mM_177600waters_paramchem
+Command line:
+  gmx_mpi mdrun -deffnm etidocaine_POPC_CHARMM_298K_Cl_countra_35mM_177600waters_paramchem -cpi etidocaine_POPC_CHARMM_298K_Cl_countra_35mM_177600waters_paramchem.cpt -v
+
+Reading file etidocaine_POPC_CHARMM_298K_Cl_countra_35mM_177600waters_paramchem.tpr, VERSION 2021.4 (single precision)
+Changing nstlist from 20 to 80, rlist from 1.223 to 1.32
+
+Using 256 MPI processes
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 2 OpenMP threads per MPI process
+
+starting mdrun '140mM Etidocaine 5187 waters'
+-1 steps, infinite ps.
+step 0
+step 100 performance: 22.7 ns/day    
+step 200 performance: 24.8 ns/day    
+step 300 performance: 25.9 ns/day    
+vol 0.91  imb F  6% pme/F 0.60 step 400 performance: 26.6 ns/day    
+step 500 performance: 27.3 ns/day    
+step 600 performance: 27.9 ns/day    
+step 700 performance: 28.3 ns/day    
+vol 0.85  imb F  4% pme/F 0.59 step 800 performance: 28.5 ns/day    
+step 900 performance: 28.8 ns/day    
+step 1000 performance: 29.0 ns/day    
+step 1100 performance: 28.9 ns/day    
+vol 0.85  imb F  4% pme/F 0.59 step 1200 performance: 29.1 ns/day    
+step 1300 performance: 29.2 ns/day    
+step 1400 performance: 29.2 ns/day    
+step 1500 performance: 29.3 ns/day    
+vol 0.87  imb F  3% pme/F 0.58 step 1600 performance: 29.4 ns/day    
+step 1700 performance: 29.4 ns/day    
+step 1800 performance: 29.5 ns/day    
+step 1900 performance: 29.6 ns/day    
+vol 0.87  imb F  5% pme/F 0.60 step 2000 performance: 29.6 ns/day    
+step 2100 performance: 29.6 ns/day    
+step 2200 performance: 29.7 ns/day    
+step 2300 performance: 29.8 ns/day    
+vol 0.90  imb F  2% pme/F 0.57 step 2400 performance: 29.8 ns/day    
+step 2500 performance: 29.8 ns/day    
+step 2600 performance: 29.8 ns/day    
+step 2700 performance: 29.5 ns/day    
+vol 0.81  imb F  8% pme/F 0.58 step 2800 performance: 29.5 ns/day    
+step 2900 performance: 29.4 ns/day    
+step 3000 performance: 29.4 ns/day    
+step 3100 performance: 29.4 ns/day    
+vol 0.85  imb F  5% pme/F 0.57 step 3200 performance: 29.4 ns/day    
+step 3300 performance: 29.4 ns/day    
+step 3400 performance: 29.5 ns/day    
+step 3500 performance: 29.5 ns/day    
+vol 0.90  imb F  3% pme/F 0.57 step 3600 performance: 29.6 ns/day    
+step 3700 performance: 29.6 ns/day    
+step 3800 performance: 29.6 ns/day    
+step 3900 performance: 29.6 ns/day    
+vol 0.89  imb F  2% pme/F 0.58 step 4000 performance: 29.7 ns/day    
+step 4100 performance: 29.7 ns/day    
+step 4200 performance: 29.7 ns/day    
+step 4300 performance: 29.8 ns/day    
+vol 0.89  imb F  2% pme/F 0.58 step 4400 performance: 29.8 ns/day    
+step 4500 performance: 29.8 ns/day    
+step 4600 performance: 29.8 ns/day    
+step 4700 performance: 29.8 ns/day    
+vol 0.85  imb F  3% pme/F 0.59 step 4800 performance: 29.8 ns/day    
+step 4900 performance: 29.8 ns/day    
+step 5000 performance: 29.8 ns/day    
+step 5100 performance: 29.8 ns/day    
+vol 0.86  imb F  2% pme/F 0.58 step 5200 performance: 29.8 ns/day    
+step 5300 performance: 29.8 ns/day    
+step 5400 performance: 29.9 ns/day    
+step 5500 performance: 29.9 ns/day    
+vol 0.87  imb F  2% pme/F 0.57 step 5600 performance: 29.9 ns/day    
+step 5700 performance: 29.9 ns/day    
+step 5800 performance: 29.9 ns/day    
+step 5900 performance: 29.9 ns/day    
+vol 0.87  imb F  3% pme/F 0.57 step 6000 performance: 29.9 ns/day    
+step 6100 performance: 29.9 ns/day    
+step 6200 performance: 30.0 ns/day    
+step 6300 performance: 30.0 ns/day    
+vol 0.89  imb F  3% pme/F 0.59 step 6400 performance: 30.0 ns/day    
+step 6500 performance: 30.0 ns/day    
+step 6600 performance: 30.0 ns/day    
+step 6700 performance: 30.0 ns/day    
+vol 0.89  imb F  6% pme/F 0.61 step 6800 performance: 30.0 ns/day    
+step 6900 performance: 30.0 ns/day    
+step 7000 performance: 30.0 ns/day    
+step 7100 performance: 30.0 ns/day    
+vol 0.88  imb F  3% pme/F 0.57 step 7200 performance: 30.0 ns/day    
+step 7300 performance: 30.0 ns/day    
+step 7400 performance: 30.0 ns/day    
+step 7500 performance: 30.1 ns/day    
+vol 0.87  imb F  2% pme/F 0.58 step 7600 performance: 30.1 ns/day    
+step 7700 performance: 30.1 ns/day    
+step 7800 performance: 30.1 ns/day    
+step 7900 performance: 30.0 ns/day    
+vol 0.78  imb F  6% pme/F 0.59 step 8000 performance: 29.9 ns/day    
+step 8100 performance: 29.9 ns/day    
+step 8200 performance: 30.0 ns/day    
+step 8300 performance: 30.0 ns/day    
+vol 0.86  imb F  3% pme/F 0.61 step 8400 performance: 30.0 ns/day    
+step 8500 performance: 30.0 ns/day    
+step 8600 performance: 30.0 ns/day    
+step 8700 performance: 30.0 ns/day    
+vol 0.88  imb F  4% pme/F 0.57 step 8800 performance: 30.0 ns/day    
+step 8900 performance: 30.0 ns/day    
+step 9000 performance: 30.0 ns/day    
+step 9100 performance: 30.0 ns/day    
+vol 0.87  imb F  3% pme/F 0.58 step 9200 performance: 30.0 ns/day    
+step 9300 performance: 30.0 ns/day    
+step 9400 performance: 30.0 ns/day    
+step 9500 performance: 30.0 ns/day    
+vol 0.88  imb F  2% pme/F 0.58 step 9600 performance: 30.1 ns/day    
+step 9700 performance: 30.0 ns/day    
+step 9800 performance: 30.1 ns/day    
+step 9900 performance: 30.0 ns/day    
+vol 0.89  imb F  3% pme/F 0.58 step 10000 performance: 30.0 ns/day    
+step 10100 performance: 30.1 ns/day    
+step 10200 performance: 30.0 ns/day    
+step 10300 performance: 30.0 ns/day    
+vol 0.87  imb F  3% pme/F 0.58 step 10400 performance: 30.0 ns/day    
+step 10500 performance: 30.0 ns/day    
+step 10600 performance: 30.1 ns/day    
+step 10700 performance: 30.1 ns/day    
+vol 0.88  imb F  3% pme/F 0.58 step 10800 performance: 30.1 ns/day    
+step 10900 performance: 30.1 ns/day    
+step 11000 performance: 30.1 ns/day    
+step 11100 performance: 30.1 ns/day    
+vol 0.89  imb F  3% pme/F 0.58 step 11200 performance: 30.1 ns/day    
+step 11300 performance: 30.1 ns/day    
+step 11400 performance: 30.1 ns/day    
+step 11500 performance: 30.1 ns/day    
+vol 0.88  imb F  8% pme/F 0.64 step 11600 performance: 30.1 ns/day    
+step 11700 performance: 30.1 ns/day    
+step 11800 performance: 30.1 ns/day    
+step 11900 performance: 30.1 ns/day    
+vol 0.88  imb F  3% pme/F 0.58 step 12000 performance: 30.1 ns/day    
+step 12100 performance: 30.1 ns/day    
+step 12200 performance: 30.1 ns/day    
+step 12300 performance: 30.1 ns/day    
+vol 0.87  imb F  3% pme/F 0.59 step 12400 performance: 30.1 ns/day    
+step 12500 performance: 30.1 ns/day    
+step 12600 performance: 30.1 ns/day    
+step 12700 performance: 30.1 ns/day    
+vol 0.88  imb F  3% pme/F 0.58 step 12800 performance: 30.1 ns/day    
+step 12900 performance: 30.1 ns/day    
+step 13000 performance: 30.1 ns/day    
+step 13100 performance: 30.2 ns/day    
+vol 0.86  imb F 25% pme/F 0.69 step 13200 performance: 30.1 ns/day    
+step 13300 performance: 30.1 ns/day    
+step 13400 performance: 30.1 ns/day    
+step 13500 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.58 step 13600 performance: 30.1 ns/day    
+step 13700 performance: 30.1 ns/day    
+step 13800 performance: 30.1 ns/day    
+step 13900 performance: 30.1 ns/day    
+vol 0.86  imb F  2% pme/F 0.58 step 14000 performance: 30.1 ns/day    
+step 14100 performance: 30.1 ns/day    
+step 14200 performance: 30.1 ns/day    
+step 14300 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.58 step 14400 performance: 30.1 ns/day    
+step 14500 performance: 30.1 ns/day    
+step 14600 performance: 30.1 ns/day    
+step 14700 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.57 step 14800 performance: 30.1 ns/day    
+step 14900 performance: 30.1 ns/day    
+step 15000 performance: 30.1 ns/day    
+step 15100 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.57 step 15200 performance: 30.1 ns/day    
+step 15300 performance: 30.1 ns/day    
+step 15400 performance: 30.1 ns/day    
+step 15500 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.58 step 15600 performance: 30.1 ns/day    
+step 15700 performance: 30.1 ns/day    
+step 15800 performance: 30.1 ns/day    
+step 15900 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.58 step 16000 performance: 30.1 ns/day    
+step 16100 performance: 30.1 ns/day    
+step 16200 performance: 30.1 ns/day    
+step 16300 performance: 30.1 ns/day    
+vol 0.85  imb F  5% pme/F 0.60 step 16400 performance: 30.1 ns/day    
+step 16500 performance: 30.1 ns/day    
+step 16600 performance: 30.1 ns/day    
+step 16700 performance: 30.2 ns/day    
+vol 0.85  imb F  4% pme/F 0.61 step 16800 performance: 30.1 ns/day    
+step 16900 performance: 30.1 ns/day    
+step 17000 performance: 30.1 ns/day    
+step 17100 performance: 30.2 ns/day    
+vol 0.86  imb F  3% pme/F 0.62 step 17200 performance: 30.2 ns/day    
+step 17300 performance: 30.2 ns/day    
+step 17400 performance: 30.2 ns/day    
+step 17500 performance: 30.2 ns/day    
+vol 0.85  imb F  3% pme/F 0.59 step 17600 performance: 30.2 ns/day    
+step 17700 performance: 30.2 ns/day    
+step 17800 performance: 30.2 ns/day    
+step 17900 performance: 30.2 ns/day    
+vol 0.84  imb F  2% pme/F 0.58 step 18000 performance: 30.2 ns/day    
+step 18100 performance: 30.2 ns/day    
+step 18200 performance: 30.2 ns/day    
+step 18300 performance: 30.2 ns/day    
+vol 0.86  imb F 17% pme/F 0.65 step 18400 performance: 30.2 ns/day    
+step 18500 performance: 30.1 ns/day    
+step 18600 performance: 30.1 ns/day    
+step 18700 performance: 30.1 ns/day    
+vol 0.80  imb F  4% pme/F 0.58 step 18800 performance: 30.1 ns/day    
+step 18900 performance: 30.1 ns/day    
+step 19000 performance: 30.1 ns/day    
+step 19100 performance: 30.1 ns/day    
+vol 0.85  imb F  2% pme/F 0.58 step 19200 performance: 30.1 ns/day    
+step 19300 performance: 30.1 ns/day    
+step 19400 performance: 30.1 ns/day    
+step 19500 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.57 step 19600 performance: 30.1 ns/day    
+step 19700 performance: 30.1 ns/day    
+step 19800 performance: 30.1 ns/day    
+step 19900 performance: 30.1 ns/day    
+vol 0.86  imb F  2% pme/F 0.58 step 20000 performance: 30.1 ns/day    
+step 20100 performance: 30.1 ns/day    
+step 20200 performance: 30.2 ns/day    
+step 20300 performance: 30.2 ns/day    
+vol 0.86  imb F  4% pme/F 0.59 step 20400 performance: 30.1 ns/day    
+step 20500 performance: 30.1 ns/day    
+step 20600 performance: 30.1 ns/day    
+step 20700 performance: 30.1 ns/day    
+vol 0.87  imb F  3% pme/F 0.58 step 20800 performance: 30.1 ns/day    
+step 20900 performance: 30.1 ns/day    
+step 21000 performance: 30.1 ns/day    
+step 21100 performance: 30.2 ns/day    
+vol 0.86  imb F  3% pme/F 0.59 step 21200 performance: 30.1 ns/day    
+step 21300 performance: 30.2 ns/day    
+step 21400 performance: 30.2 ns/day    
+step 21500 performance: 30.2 ns/day    
+vol 0.85  imb F  3% pme/F 0.58 step 21600 performance: 30.2 ns/day    
+step 21700 performance: 30.2 ns/day    
+step 21800 performance: 30.2 ns/day    
+step 21900 performance: 30.2 ns/day    
+vol 0.85  imb F  2% pme/F 0.57 step 22000 performance: 30.2 ns/day    
+step 22100 performance: 30.2 ns/day    
+step 22200 performance: 30.2 ns/day    
+step 22300 performance: 30.2 ns/day    
+vol 0.84  imb F  8% pme/F 0.61 step 22400 performance: 30.2 ns/day    
+step 22500 performance: 30.2 ns/day    
+step 22600 performance: 30.2 ns/day    
+step 22700 performance: 30.2 ns/day    
+vol 0.83  imb F  2% pme/F 0.58 step 22800 performance: 30.2 ns/day    
+step 22900 performance: 30.2 ns/day    
+step 23000 performance: 30.2 ns/day    
+step 23100 performance: 30.2 ns/day    
+vol 0.84  imb F  4% pme/F 0.57 step 23200 performance: 30.2 ns/day    
+step 23300 performance: 30.2 ns/day    
+step 23400 performance: 30.2 ns/day    
+step 23500 performance: 30.2 ns/day    
+vol 0.84  imb F  4% pme/F 0.60 step 23600 performance: 30.2 ns/day    
+step 23700 performance: 30.1 ns/day    
+step 23800 performance: 30.1 ns/day    
+step 23900 performance: 30.1 ns/day    
+vol 0.80  imb F  5% pme/F 0.57 step 24000 performance: 30.1 ns/day    
+step 24100 performance: 30.1 ns/day    
+step 24200 performance: 30.1 ns/day    
+step 24300 performance: 30.1 ns/day    
+vol 0.83  imb F  3% pme/F 0.58 step 24400 performance: 30.1 ns/day    
+step 24500 performance: 30.1 ns/day    
+step 24600 performance: 30.1 ns/day    
+step 24700 performance: 30.1 ns/day    
+vol 0.84  imb F  2% pme/F 0.58 step 24800 performance: 30.1 ns/day    
+step 24900 performance: 30.1 ns/day    
+step 25000 performance: 30.1 ns/day    
+step 25100 performance: 30.1 ns/day    
+vol 0.84  imb F  4% pme/F 0.60 step 25200 performance: 30.1 ns/day    
+step 25300 performance: 30.1 ns/day    
+step 25400 performance: 30.1 ns/day    
+step 25500 performance: 30.1 ns/day    
+vol 0.84  imb F  5% pme/F 0.60 step 25600 performance: 30.1 ns/day    
+step 25700 performance: 30.1 ns/day    
+step 25800 performance: 30.1 ns/day    
+step 25900 performance: 30.1 ns/day    
+vol 0.82  imb F  5% pme/F 0.60 step 26000 performance: 30.1 ns/day    
+step 26100 performance: 30.1 ns/day    
+step 26200 performance: 30.1 ns/day    
+step 26300 performance: 30.1 ns/day    
+vol 0.84  imb F  3% pme/F 0.59 step 26400 performance: 30.1 ns/day    
+step 26500 performance: 30.1 ns/day    
+step 26600 performance: 30.1 ns/day    
+step 26700 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.57 step 26800 performance: 30.1 ns/day    
+step 26900 performance: 30.1 ns/day    
+step 27000 performance: 30.1 ns/day    
+step 27100 performance: 30.1 ns/day    
+vol 0.84  imb F  2% pme/F 0.58 step 27200 performance: 30.1 ns/day    
+step 27300 performance: 30.1 ns/day    
+step 27400 performance: 30.1 ns/day    
+step 27500 performance: 30.1 ns/day    
+vol 0.84  imb F  6% pme/F 0.61 step 27600 performance: 30.1 ns/day    
+step 27700 performance: 30.1 ns/day    
+step 27800 performance: 30.1 ns/day    
+step 27900 performance: 30.1 ns/day    
+vol 0.84  imb F  3% pme/F 0.57 step 28000 performance: 30.1 ns/day    
+step 28100 performance: 30.1 ns/day    
+step 28200 performance: 30.1 ns/day    
+step 28300 performance: 30.1 ns/day    
+vol 0.83  imb F  2% pme/F 0.57 step 28400 performance: 30.1 ns/day    
+step 28500 performance: 30.1 ns/day    
+step 28600 performance: 30.1 ns/day    
+step 28700 performance: 30.1 ns/day    
+vol 0.85  imb F  4% pme/F 0.58 step 28800 performance: 30.1 ns/day    
+step 28900 performance: 30.1 ns/day    
+step 29000 performance: 30.1 ns/day    
+step 29100 performance: 30.1 ns/day    
+vol 0.83  imb F  4% pme/F 0.56 step 29200 performance: 30.1 ns/day    
+step 29300 performance: 30.1 ns/day    
+step 29400 performance: 30.1 ns/day    
+step 29500 performance: 30.1 ns/day    
+vol 0.83  imb F  3% pme/F 0.58 step 29600 performance: 30.1 ns/day    
+step 29700 performance: 30.1 ns/day    
+step 29800 performance: 30.1 ns/day    
+step 29900 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.58 step 30000 performance: 30.1 ns/day    
+step 30100 performance: 30.1 ns/day    
+step 30200 performance: 30.1 ns/day    
+step 30300 performance: 30.1 ns/day    
+vol 0.84  imb F  3% pme/F 0.59 step 30400 performance: 30.1 ns/day    
+step 30500 performance: 30.1 ns/day    
+step 30600 performance: 30.1 ns/day    
+step 30700 performance: 30.1 ns/day    
+vol 0.85  imb F  9% pme/F 0.62 step 30800 performance: 30.1 ns/day    
+step 30900 performance: 30.1 ns/day    
+step 31000 performance: 30.1 ns/day    
+step 31100 performance: 30.1 ns/day    
+vol 0.81  imb F  4% pme/F 0.58 step 31200 performance: 30.1 ns/day    
+step 31300 performance: 30.1 ns/day    
+step 31400 performance: 30.1 ns/day    
+step 31500 performance: 30.1 ns/day    
+vol 0.83  imb F  3% pme/F 0.59 step 31600 performance: 30.1 ns/day    
+step 31700 performance: 30.1 ns/day    
+step 31800 performance: 30.1 ns/day    
+step 31900 performance: 30.1 ns/day    
+vol 0.83  imb F  2% pme/F 0.57 step 32000 performance: 30.1 ns/day    
+step 32100 performance: 30.1 ns/day    
+step 32200 performance: 30.1 ns/day    
+step 32300 performance: 30.1 ns/day    
+vol 0.83  imb F  3% pme/F 0.57 step 32400 performance: 30.1 ns/day    
+step 32500 performance: 30.1 ns/day    
+step 32600 performance: 30.1 ns/day    
+step 32700 performance: 30.1 ns/day    
+vol 0.84  imb F  5% pme/F 0.61 step 32800 performance: 30.1 ns/day    
+step 32900 performance: 30.1 ns/day    
+step 33000 performance: 30.1 ns/day    
+step 33100 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.58 step 33200 performance: 30.1 ns/day    
+step 33300 performance: 30.1 ns/day    
+step 33400 performance: 30.1 ns/day    
+step 33500 performance: 30.1 ns/day    
+vol 0.84  imb F  2% pme/F 0.57 step 33600 performance: 30.1 ns/day    
+step 33700 performance: 30.1 ns/day    
+step 33800 performance: 30.1 ns/day    
+step 33900 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.61 step 34000 performance: 30.1 ns/day    
+step 34100 performance: 30.1 ns/day    
+step 34200 performance: 30.1 ns/day    
+step 34300 performance: 30.1 ns/day    
+vol 0.81  imb F  4% pme/F 0.59 step 34400 performance: 30.1 ns/day    
+step 34500 performance: 30.1 ns/day    
+step 34600 performance: 30.1 ns/day    
+step 34700 performance: 30.1 ns/day    
+vol 0.84  imb F  3% pme/F 0.57 step 34800 performance: 30.1 ns/day    
+step 34900 performance: 30.1 ns/day    
+step 35000 performance: 30.1 ns/day    
+step 35100 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.57 step 35200 performance: 30.1 ns/day    
+step 35300 performance: 30.1 ns/day    
+step 35400 performance: 30.1 ns/day    
+step 35500 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.59 step 35600 performance: 30.1 ns/day    
+step 35700 performance: 30.1 ns/day    
+step 35800 performance: 30.1 ns/day    
+step 35900 performance: 30.1 ns/day    
+vol 0.87  imb F  9% pme/F 0.66 step 36000 performance: 30.1 ns/day    
+step 36100 performance: 30.1 ns/day    
+step 36200 performance: 30.1 ns/day    
+step 36300 performance: 30.1 ns/day    
+vol 0.88  imb F  6% pme/F 0.59 step 36400 performance: 30.1 ns/day    
+step 36500 performance: 30.1 ns/day    
+step 36600 performance: 30.1 ns/day    
+step 36700 performance: 30.1 ns/day    
+vol 0.88  imb F  3% pme/F 0.58 step 36800 performance: 30.1 ns/day    
+step 36900 performance: 30.1 ns/day    
+step 37000 performance: 30.1 ns/day    
+step 37100 performance: 30.1 ns/day    
+vol 0.87  imb F  3% pme/F 0.57 step 37200 performance: 30.1 ns/day    
+step 37300 performance: 30.1 ns/day    
+step 37400 performance: 30.1 ns/day    
+step 37500 performance: 30.1 ns/day    
+vol 0.85  imb F  2% pme/F 0.58 step 37600 performance: 30.1 ns/day    
+step 37700 performance: 30.1 ns/day    
+step 37800 performance: 30.1 ns/day    
+step 37900 performance: 30.1 ns/day    
+vol 0.86  imb F  4% pme/F 0.59 step 38000 performance: 30.1 ns/day    
+step 38100 performance: 30.1 ns/day    
+step 38200 performance: 30.1 ns/day    
+step 38300 performance: 30.1 ns/day    
+vol 0.84  imb F  4% pme/F 0.58 step 38400 performance: 30.1 ns/day    
+step 38500 performance: 30.1 ns/day    
+step 38600 performance: 30.1 ns/day    
+step 38700 performance: 30.1 ns/day    
+vol 0.86  imb F  2% pme/F 0.57 step 38800 performance: 30.1 ns/day    
+step 38900 performance: 30.1 ns/day    
+step 39000 performance: 30.1 ns/day    
+step 39100 performance: 30.1 ns/day    
+vol 0.85  imb F  2% pme/F 0.58 step 39200 performance: 30.1 ns/day    
+step 39300 performance: 30.1 ns/day    
+step 39400 performance: 30.1 ns/day    
+step 39500 performance: 30.1 ns/day    
+vol 0.81  imb F  4% pme/F 0.58 step 39600 performance: 30.1 ns/day    
+step 39700 performance: 30.1 ns/day    
+step 39800 performance: 30.1 ns/day    
+step 39900 performance: 30.1 ns/day    
+vol 0.83  imb F  3% pme/F 0.58 step 40000 performance: 30.1 ns/day    
+step 40100 performance: 30.1 ns/day    
+step 40200 performance: 30.1 ns/day    
+step 40300 performance: 30.1 ns/day    
+vol 0.85  imb F  2% pme/F 0.58 step 40400 performance: 30.1 ns/day    
+step 40500 performance: 30.1 ns/day    
+step 40600 performance: 30.1 ns/day    
+step 40700 performance: 30.1 ns/day    
+vol 0.86  imb F  4% pme/F 0.59 step 40800 performance: 30.1 ns/day    
+step 40900 performance: 30.1 ns/day    
+step 41000 performance: 30.1 ns/day    
+step 41100 performance: 30.1 ns/day    
+vol 0.87  imb F 10% pme/F 0.65 step 41200 performance: 30.1 ns/day    
+step 41300 performance: 30.1 ns/day    
+step 41400 performance: 30.1 ns/day    
+step 41500 performance: 30.1 ns/day    
+vol 0.84  imb F  4% pme/F 0.59 step 41600 performance: 30.1 ns/day    
+step 41700 performance: 30.1 ns/day    
+step 41800 performance: 30.1 ns/day    
+step 41900 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.58 step 42000 performance: 30.1 ns/day    
+step 42100 performance: 30.1 ns/day    
+step 42200 performance: 30.1 ns/day    
+step 42300 performance: 30.1 ns/day    
+vol 0.84  imb F  2% pme/F 0.58 step 42400 performance: 30.1 ns/day    
+step 42500 performance: 30.1 ns/day    
+step 42600 performance: 30.1 ns/day    
+step 42700 performance: 30.1 ns/day    
+vol 0.85  imb F  2% pme/F 0.58 step 42800 performance: 30.1 ns/day    
+step 42900 performance: 30.1 ns/day    
+step 43000 performance: 30.1 ns/day    
+step 43100 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.58 step 43200 performance: 30.1 ns/day    
+step 43300 performance: 30.1 ns/day    
+step 43400 performance: 30.1 ns/day    
+step 43500 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.58 step 43600 performance: 30.1 ns/day    
+step 43700 performance: 30.1 ns/day    
+step 43800 performance: 30.1 ns/day    
+step 43900 performance: 30.1 ns/day    
+vol 0.85  imb F  2% pme/F 0.58 step 44000 performance: 30.1 ns/day    
+step 44100 performance: 30.1 ns/day    
+step 44200 performance: 30.1 ns/day    
+step 44300 performance: 30.1 ns/day    
+vol 0.85  imb F  3% pme/F 0.57 step 44400 performance: 30.1 ns/day    
+step 44500 performance: 30.1 ns/day    
+step 44600 performance: 30.1 ns/day    
+step 44700 performance: 30.1 ns/day    
+vol 0.82  imb F  4% pme/F 0.57 step 44800 performance: 30.1 ns/day    
+step 44900 performance: 30.1 ns/day    
+step 45000 performance: 30.1 ns/day    
+step 45100 performance: 30.1 ns/day    
+vol 0.84  imb F  3% pme/F 0.57 step 45200 performance: 30.1 ns/day    
+step 45300 performance: 30.1 ns/day    
+step 45400 performance: 30.1 ns/day    
+step 45500 performance: 30.1 ns/day    
+vol 0.86  imb F  3% pme/F 0.57 step 45600 performance: 30.1 ns/day    
+step 45700 performance: 30.1 ns/day    
+step 45800 performance: 30.1 ns/day    
+step 45900 performance: 30.1 ns/day    
+vol 0.87  imb F  3% pme/F 0.58 step 46000 performance: 30.1 ns/day    
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+
+
+Received the TERM signal, stopping within 80 steps
+
+slurmstepd: error: *** STEP 1040916.0 ON c1102 CANCELLED AT 2022-03-02T21:08:22 ***
+slurmstepd: error: *** JOB 1040916 ON c1102 CANCELLED AT 2022-03-02T21:08:22 ***
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
+
+
+Received the TERM signal, stopping within 80 steps
+
