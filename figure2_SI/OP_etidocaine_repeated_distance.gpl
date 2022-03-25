@@ -5,7 +5,7 @@ set terminal pdf enhanced size 9,5
 set encoding utf8
 set output "OP_etidocaine_repeated_distance.pdf"
  
-set yrange [-0.07:-0.0001] 
+set yrange [-0.12:-0.0001] 
 set ytics format "%.2f"
  
 set key above left maxcols 2 font 'Times,14'
@@ -26,8 +26,8 @@ M02 = "set tmargin at screen 0.475; set bmargin at screen 0.1 ; set lmargin at s
 M03 = "set tmargin at screen 0.85; set bmargin at screen 0.475; set lmargin at screen 0.37; set rmargin at screen 0.65"
 M04 = "set tmargin at screen 0.475; set bmargin at screen 0.1 ; set lmargin at screen 0.37; set rmargin at screen 0.65"
 
-M05 = "set tmargin at screen 0.85; set bmargin at screen 0.475; set lmargin at screen 0.08; set rmargin at screen 0.36"
-M06 = "set tmargin at screen 0.475; set bmargin at screen 0.1 ; set lmargin at screen 0.08; set rmargin at screen 0.36"
+M05 = "set tmargin at screen 0.85; set bmargin at screen 0.475; set lmargin at screen 0.66; set rmargin at screen 0.94"
+M06 = "set tmargin at screen 0.475; set bmargin at screen 0.1 ; set lmargin at screen 0.66; set rmargin at screen 0.94"
 
 
 ####################################################################################################33
@@ -99,5 +99,29 @@ plot  "140mM_PARAMCHEM_combinedDisks.dat" using 11:($3-0.03289) with linespoints
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($3-0.03289):($4+0.00116) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36, 298K",\
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($5-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($5-0.03618):($6+0.00116) with yerrorbars  ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
+
+
+
+@M05
+
+unset ylabel
+unset ytics
+unset xtics 
+unset xlabel
+
+plot "140mM_ECC_combinedDisks.dat" using 11:($7+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") title "ParamChem ECC, 140mM",\
+"140mM_ECC_combinedDisks.dat" using 11:($7+0.07640):($8+0.00106) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle,\
+"140mM_ECC_combinedDisks.dat" using 11:($9+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
+"140mM_ECC_combinedDisks.dat" using 11:($9+0.07626):($10+0.00106) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
+
+unset title
+set xtics 2 font 'Times,16'
+
+set xlabel "Repeated distance [nm]" font 'Times,20'
+@M06
+plot  "140mM_ECC_combinedDisks.dat" using 11:($3-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36, 298K",\
+"140mM_ECC_combinedDisks.dat" using 11:($3-0.03289):($4+0.00116) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36, 298K",\
+"140mM_ECC_combinedDisks.dat" using 11:($5-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
+"140mM_ECC_combinedDisks.dat" using 11:($5-0.03618):($6+0.00116) with yerrorbars  ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
 
 

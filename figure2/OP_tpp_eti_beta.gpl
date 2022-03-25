@@ -1,10 +1,10 @@
 
 set size 1,1
-set terminal pdf enhanced size 6,13.3
+set terminal pdf enhanced size 6,11
 set encoding utf8
 set output "OP_tpp_eti_beta.pdf"
  
-set yrange [-0.13:0.005] 
+set yrange [-0.128:0.005] 
 set ytics format "%.2f"
  
 set key above left maxcols 1 font 'Times,18' 
@@ -20,8 +20,8 @@ set multiplot layout 1,2
 
 ############################################################################## 
 
-Left_margin=0.12
-Center_horizontal=0.55
+Left_margin=0.13
+Center_horizontal=0.555
 Right_margin=0.98
 
 Top_margin=0.91
@@ -29,7 +29,7 @@ Center_v1=0.74
 Center_v2=0.57
 Center_v3=0.40
 Center_v4=0.23
-Bottom_margin=0.06
+Bottom_margin=0.04
 
 ETI_response = "set tmargin at screen Top_margin; set bmargin at screen Center_v1+0.015; set lmargin at screen Left_margin; set rmargin at screen Center_horizontal"
 TPP_response = "set tmargin at screen Top_margin; set bmargin at screen Center_v1+0.015; set lmargin at screen Center_horizontal; set rmargin at screen Right_margin"
@@ -57,6 +57,12 @@ TPP_density = "set tmargin at screen Center_v4-0.07; set bmargin at screen Botto
 M01 = "set tmargin at screen 0.85; set bmargin at screen 0.5"
 M02 = "set tmargin at screen 0.45; set bmargin at screen 0.1"
 
+
+set style line 1 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#96c193"
+set style line 2 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#3d5954"
+set style line 3 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#9693c1"
+set style line 4 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#3e209d"
+
 ####################################################################################################33
 #plot the beta for calcium
 unset xtics
@@ -71,10 +77,10 @@ set style fill noborder # no separate top/bottom lines
 
 
 @ETI_response
-set ytics font 'Times,18'
+set ytics font 'Times, 20'
 unset xtics #  font 'Times,18'
 #set title "Etidocaine"
-set ylabel "S^{α}_{CH}"  font 'Times,20' offset -1,0
+set ylabel "ΔS^{α}_{CH}"  font 'Times,22' offset -0.8,0
 unset xlabel # "Concentration of ETI [mM]"  font 'Times,20' 
 
 plot "seelig_experiment_etidocaine_alpha.dat" using 4:($3*0.00784-5.75*0.00784) with linespoints ls 5 lc rgb("#000000") title "Experiment (POPC), 298K" ,\
@@ -82,14 +88,14 @@ plot "seelig_experiment_etidocaine_alpha.dat" using 4:($3*0.00784-5.75*0.00784) 
 "etidocaine_Swiss_converged_OP_from_2_sim.out" using 1:($7-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 1 notitle ,\
  "etidocaine_Swiss_converged_OP_from_2_sim.out" using 1:($6-0.03289):8 with yerrorbars pt 6 ps 0.7 lc 1 notitle "CHARMM36, 298K",\
 "etidocaine_Swiss_converged_OP_from_2_sim.out" using 1:($7-0.03618):9 with  yerrorbars pt 6 ps 0.7  lc 1  notitle ,\
-"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 2 title "CHARMM36 - ParamChem",\
-"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($3-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 2 notitle ,\
-"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($2-0.03289):4 with yerrorbars pt 6 ps 0.7 lc 2 notitle ,\
-"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($3-0.03618):5 with yerrorbars pt 6 ps 0.7 lc 2 notitle ,\
-"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 title "CH36 - ParamChem ECC",\
-"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($3-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 notitle ,\
-"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($2-0.03289):4 with yerrorbars pt 6 ps 0.7 lc 3 notitle ,\
-"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($3-0.03618):5 with yerrorbars pt 6 ps 0.7 lc 3 notitle ,\
+"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($2-0.03289) with linespoints ls 1 title "CHARMM36 - ParamChem",\
+"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($3-0.03618) with linespoints ls 1 notitle ,\
+"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($2-0.03289):4 with yerrorbars ls 1 notitle ,\
+"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($3-0.03618):5 with yerrorbars ls 1 notitle ,\
+"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($2-0.03289) with linespoints ls 2 title "CH36 - ParamChem ECC",\
+"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($3-0.03618) with linespoints ls 2 notitle ,\
+"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($2-0.03289):4 with yerrorbars ls 2 notitle ,\
+"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($3-0.03618):5 with yerrorbars ls 2 notitle ,\
 
 
 #"etidocaine_Paramchem_converged_OP_from_2_sim.out" using 1:($6-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") title "CHARMM36 - ParamChem",\
@@ -104,11 +110,11 @@ plot "seelig_experiment_etidocaine_alpha.dat" using 4:($3*0.00784-5.75*0.00784) 
 
 
 @ETI_response_beta
-set ytics font 'Times,18'
-set xtics  font 'Times,18'
+set ytics font 'Times,20'
+set xtics  font 'Times,20'
 #set title "Etidocaine"
-set ylabel "S^{β}_{CH}"  font 'Times,20' offset -1,0
-set xlabel "Concentration of ETI [mM]"  font 'Times,20' 
+set ylabel "ΔS^{β}_{CH}"  font 'Times,22' offset -0.8,0
+set xlabel "Concentration of ETI [mM]"  font 'Times,22' 
 
 set yrange [-0.08:0.01] 
 set yrange [-0.13:0.005]
@@ -118,14 +124,14 @@ plot "seelig_experiment_etidocaine_beta.dat" using 4:($3*-0.00784+5.5*0.00784) w
 "etidocaine_Swiss_converged_OP_from_2_sim.out" using 1:($15+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 1 notitle ,\
  "etidocaine_Swiss_converged_OP_from_2_sim.out" using 1:($14+0.07640):16 with yerrorbars pt 6 ps 0.7 lc 1 notitle "CHARMM36, 298K",\
 "etidocaine_Swiss_converged_OP_from_2_sim.out" using 1:($15+0.07626):17 with  yerrorbars pt 6 ps 0.7  lc 1  notitle ,\
-"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($6+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 2 notitle "CHARMM36 - ParamChem BIG",\
-"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($7+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 2 notitle ,\
-"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($6+0.07640):8 with yerrorbars pt 6 ps 0.7 lc 2 notitle ,\
-"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($7+0.07626):9 with yerrorbars pt 6 ps 0.7 lc 2 notitle ,\
-"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($6+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 notitle "CHARMM36 - ParamChem BIG",\
-"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($7+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 notitle ,\
-"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($6+0.07640):8 with yerrorbars pt 6 ps 0.7 lc 3 notitle ,\
-"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($7+0.07626):9 with yerrorbars pt 6 ps 0.7 lc 3 notitle ,\
+"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($6+0.07640) with linespoints ls 1 notitle "CHARMM36 - ParamChem BIG",\
+"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($7+0.07626) with linespoints ls 1 notitle ,\
+"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($6+0.07640):8 with yerrorbars ls 1 notitle ,\
+"etidocaine_Paramchem_converged_OP_bigBox.out" using 1:($7+0.07626):9 with yerrorbars ls 1 notitle ,\
+"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($6+0.07640) with linespoints ls 2 notitle "CHARMM36 - ParamChem BIG",\
+"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($7+0.07626) with linespoints ls 2 notitle ,\
+"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($6+0.07640):8 with yerrorbars ls 2 notitle ,\
+"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using 1:($7+0.07626):9 with yerrorbars ls 2 notitle ,\
 
 
 #"etidocaine_Paramchem_converged_OP_from_2_sim.out" using 1:($14+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36 - Paramchem",\
@@ -143,7 +149,7 @@ set xrange [0:520]
 set yrange [-0.13:0.005] 
 #set title "Teteraphenylphosphonium ion"
 
-set xtics font 'Times,18'
+set xtics font 'Times,20'
 #set ylabel "S^{α}_{CH}" font 'Times,20'
 
 
@@ -156,55 +162,55 @@ unset xlabel
 unset xtics 
 
 plot "experiment_seelig_tpp_alpha.dat" using 4:($3*0.00784-5.8*0.00784) with linespoints ls 5 lc rgb("#000000") notitle "Experiment (POPC), 298K" ,\
- "TPP_B3LYP_EPS_converged_OP.out" using 1:($2-0.03289):6 with yerrorbars pt 6 ps 0.7 lc 4 notitle "CHARMM36 - B3LYP",\
-"TPP_B3LYP_EPS_converged_OP.out" using 1:($3-0.03618):7 with  yerrorbars pt 6 ps 0.7  lc 4  notitle ,\
-"TPP_B3LYP_EPS_converged_OP.out" using 1:($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 title "CHARMM36 - B3LYP",\
-"TPP_B3LYP_EPS_converged_OP.out" using 1:($3-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle ,\
- "TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($2-0.03289):6 with yerrorbars pt 6 ps 0.7 lc 5 notitle "CHARMM36, 298K",\
-"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($3-0.03618):7 with  yerrorbars pt 6 ps 0.7  lc 5  notitle ,\
-"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 5 title "CHARMM36 - B3LYP ECC",\
-"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($3-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 5 notitle ,\
-"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($5-0.03289):10 with yerrorbars pt 6 ps 0.7 lc 6 notitle "CHARMM36, 298K",\
-"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($7-0.03618):12 with  yerrorbars pt 6 ps 0.7  lc 6  notitle ,\
-"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($5-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 6 title "CHARMM36 - Protein FF",\
-"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($7-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 6 notitle ,\
+ "TPP_B3LYP_EPS_converged_OP.out" using 1:($2-0.03289):6 with yerrorbars ls 3 notitle "CHARMM36 - B3LYP",\
+"TPP_B3LYP_EPS_converged_OP.out" using 1:($3-0.03618):7 with  yerrorbars ls 3 notitle ,\
+"TPP_B3LYP_EPS_converged_OP.out" using 1:($2-0.03289) with linespoints ls 3 title "CHARMM36 - B3LYP",\
+"TPP_B3LYP_EPS_converged_OP.out" using 1:($3-0.03618) with linespoints ls 3 notitle ,\
+ "TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($2-0.03289):6 with yerrorbars ls 4 notitle "CHARMM36, 298K",\
+"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($3-0.03618):7 with  yerrorbars ls 4  notitle ,\
+"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($2-0.03289) with linespoints ls 4 title "CHARMM36 - B3LYP ECC",\
+"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($3-0.03618) with linespoints ls 4 notitle ,\
+"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($5-0.03289):10 with yerrorbars pt 6 ps 0.7 lc 4 notitle "CHARMM36, 298K",\
+"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($7-0.03618):12 with  yerrorbars pt 6 ps 0.7  lc 4  notitle ,\
+"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($5-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 title "CHARMM36 - Protein FF",\
+"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($7-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle ,\
 
 
 
 @TPP_response_beta
 
-set xtics font 'Times,18'
-set xlabel "Concentration of TPP [mM]" font 'Times,20'
+set xtics font 'Times,20'
+set xlabel "Concentration of TPP [mM]" font 'Times,22'
 
-plot  "TPP_B3LYP_EPS_converged_OP.out" using 1:($4+0.07640):8 with yerrorbars pt 6 ps 0.7 lc 4 notitle "CHARMM36 - B3LYP",\
-"TPP_B3LYP_EPS_converged_OP.out" using 1:($5+0.07626):9 with  yerrorbars pt 6 ps 0.7  lc 4  notitle ,\
-"TPP_B3LYP_EPS_converged_OP.out" using 1:($4+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 title "CHARMM36 - B3LYP",\
-"TPP_B3LYP_EPS_converged_OP.out" using 1:($5+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle ,\
- "TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($4+0.07640):8 with yerrorbars pt 6 ps 0.7 lc 5 notitle "CHARMM36, 298K",\
-"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($5+0.07626):9 with  yerrorbars pt 6 ps 0.7  lc 5  notitle ,\
-"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($4+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 5 title "CHARMM36 - B3LYP ECC",\
-"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($5+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 5 notitle ,\
-"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($9+0.07640):10 with yerrorbars pt 6 ps 0.7 lc 6 notitle "CHARMM36, 298K",\
-"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($11+0.07626):12 with  yerrorbars pt 6 ps 0.7  lc 6  notitle ,\
-"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($9+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 6 title "CHARMM36 - Protein FF",\
-"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($11+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 6 notitle ,\
+plot  "TPP_B3LYP_EPS_converged_OP.out" using 1:($4+0.07640):8 with yerrorbars ls 3 notitle "CHARMM36 - B3LYP",\
+"TPP_B3LYP_EPS_converged_OP.out" using 1:($5+0.07626):9 with  yerrorbars ls 3  notitle ,\
+"TPP_B3LYP_EPS_converged_OP.out" using 1:($4+0.07640) with linespoints ls 3 notitle "CHARMM36 - B3LYP",\
+"TPP_B3LYP_EPS_converged_OP.out" using 1:($5+0.07626) with linespoints ls 3 notitle ,\
+ "TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($4+0.07640):8 with yerrorbars ls 4 notitle "CHARMM36, 298K",\
+"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($5+0.07626):9 with  yerrorbars ls 4  notitle ,\
+"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($4+0.07640) with linespoints ls 4 notitle "CHARMM36 - B3LYP ECC",\
+"TPP_B3LYP_EPS_ECC_converged_OP.out" using 1:($5+0.07626) with linespoints ls 4 notitle ,\
+"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($9+0.07640):10 with yerrorbars pt 6 ps 0.7 lc 4 notitle "CHARMM36, 298K",\
+"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($11+0.07626):12 with  yerrorbars pt 6 ps 0.7  lc 4  notitle ,\
+"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($9+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle "CHARMM36 - Protein FF",\
+"TPP_CHARMM36_for_protein_converged_OP.out" using 1:($11+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle ,\
 
 
 @ETI_proove
-set yrange [-0.08:0.01] 
+set yrange [-0.069:0.005] 
 unset xtics # 0.05 font 'Times,18'
 set xrange  [0:0.349] 
-unset xlabel # "Etidocaine/POPC [mol/mol]" font 'Times,20'
-set ylabel "S^{α}_{CH}" font 'Times,20' offset -1,0
-set ytics font 'Times,18'
+unset xlabel # "Etidocaine/POPC [mol/mol]" font 'Times,22'
+set ylabel "ΔS^{α}_{CH}" font 'Times,22' offset -0.8,0
+set ytics font 'Times,20'
 
 plot  "seelig_experiment_etidocaine_alpha.dat" using 2:($3*0.00784-6.1*0.00784) with linespoints ls 5 lc rgb("#000000") notitle "Experiment (POPC), 298K" ,\
- "etidocaine_Paramchem_all_OP_vs_bound.dat" using ($2/200):($4-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 2 notitle "CHARMM36 Parameters 1",\
-"etidocaine_Paramchem_all_OP_vs_bound.dat" using ($2/200):($6-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 2 notitle ,\
+ "etidocaine_Paramchem_all_OP_vs_bound.dat" using ($2/200):($4-0.03289) with linespoints ls 1 notitle "CHARMM36 Parameters 1",\
+"etidocaine_Paramchem_all_OP_vs_bound.dat" using ($2/200):($6-0.03618) with linespoints ls 1 notitle ,\
 "etidocaine_Swiss_all_OP_vs_bound.dat" using ($2/200):($4-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 1 notitle "CHARMM36 Parameters 2",\
 "etidocaine_Swiss_all_OP_vs_bound.dat" using ($2/200):($6-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 1 notitle ,\
-"etidocaine_Paramchem_ECC_all_OP_vs_bound.out" using ($10/200):($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 notitle "Paramchem",\
-"etidocaine_Paramchem_ECC_all_OP_vs_bound.out" using ($10/200):($3-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 notitle ,\
+"etidocaine_Paramchem_ECC_all_OP_vs_bound.out" using ($10/200):($2-0.03289) with linespoints ls 2 notitle "Paramchem",\
+"etidocaine_Paramchem_ECC_all_OP_vs_bound.out" using ($10/200):($3-0.03618) with linespoints ls 2 notitle ,\
 
 #"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using ($10/200):($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa00aa") notitle ,\
 #"etidocaine_Paramchem_ECC_converged_OP_bigBox.out" using ($10/200):($3-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#aa00aa") notitle ,\
@@ -217,42 +223,45 @@ plot  "seelig_experiment_etidocaine_alpha.dat" using 2:($3*0.00784-6.1*0.00784) 
 set xlabel "TPP/POPC [mol/mol]" font 'Times,20'
 unset ytics
 unset ylabel
+unset xlabel
 set xrange [0:0.3]
 
 plot  "experiment_seelig_tpp_alpha.dat" using ($2/1000):($3*0.00784-5.8*0.00784) with linespoints ls 5 lc rgb("#000000") notitle "Experiment (POPC), 298K" ,\
- "TPP_B3LYP_EPS_all_OP_vs_bound.out" using ($10/200):($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle "MD",\
-  "TPP_B3LYP_EPS_all_OP_vs_bound.out" using ($10/200):($3-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle "MD",\
-"TPP_B3LYP_EPS_ECC_all_OP_vs_bound.out" using ($10/200):($2-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 5 notitle "MD",\
-  "TPP_B3LYP_EPS_ECC_all_OP_vs_bound.out" using ($10/200):($3-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 5 notitle "MD",\
-"TPP_CHARMM36_for_protein_converged_OP.out" using ($2/200):($5-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 6 notitle "CHARMM36 - Protein FF",\
-"TPP_CHARMM36_for_protein_converged_OP.out" using ($2/200):($7-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 6 notitle ,\
+ "TPP_B3LYP_EPS_all_OP_vs_bound.out" using ($10/200):($2-0.03289) with linespoints ls 3 notitle "MD",\
+  "TPP_B3LYP_EPS_all_OP_vs_bound.out" using ($10/200):($3-0.03618) with linespoints ls 3 notitle "MD",\
+"TPP_B3LYP_EPS_ECC_all_OP_vs_bound.out" using ($10/200):($2-0.03289) with linespoints ls 4 notitle "MD",\
+  "TPP_B3LYP_EPS_ECC_all_OP_vs_bound.out" using ($10/200):($3-0.03618) with linespoints ls 4 notitle "MD",\
+"TPP_CHARMM36_for_protein_converged_OP.out" using ($2/200):($5-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle "CHARMM36 - Protein FF",\
+"TPP_CHARMM36_for_protein_converged_OP.out" using ($2/200):($7-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle ,\
 
+set xlabel "TPP/POPC [mol/mol]" font 'Times,22'
+set xtics 0.05 font 'Times,20'
 
 
 @TPP_proove_beta
-plot  "TPP_B3LYP_EPS_all_OP_vs_bound.out" using ($10/200):($4+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle "MD",\
-  "TPP_B3LYP_EPS_all_OP_vs_bound.out" using ($10/200):($5+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle "MD",\
-"TPP_B3LYP_EPS_ECC_all_OP_vs_bound.out" using ($10/200):($4+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 5 notitle "MD",\
-  "TPP_B3LYP_EPS_ECC_all_OP_vs_bound.out" using ($10/200):($5+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 5 notitle "MD",\
-"TPP_CHARMM36_for_protein_converged_OP.out" using ($2/200):($9+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 6 notitle "CHARMM36 - Protein FF",\
-"TPP_CHARMM36_for_protein_converged_OP.out" using ($2/200):($11+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 6 notitle ,\
+plot  "TPP_B3LYP_EPS_all_OP_vs_bound.out" using ($10/200):($4+0.07640) with linespoints ls 3 notitle "MD",\
+  "TPP_B3LYP_EPS_all_OP_vs_bound.out" using ($10/200):($5+0.07626) with linespoints ls 3 notitle "MD",\
+"TPP_B3LYP_EPS_ECC_all_OP_vs_bound.out" using ($10/200):($4+0.07640) with linespoints ls 4 notitle "MD",\
+  "TPP_B3LYP_EPS_ECC_all_OP_vs_bound.out" using ($10/200):($5+0.07626) with linespoints ls 4 notitle "MD",\
+"TPP_CHARMM36_for_protein_converged_OP.out" using ($2/200):($9+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle "CHARMM36 - Protein FF",\
+"TPP_CHARMM36_for_protein_converged_OP.out" using ($2/200):($11+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 4 notitle ,\
 
 
 
 @ETI_proove_beta
-set xtics 0.05 font 'Times,18'
+set xtics 0.05 font 'Times,20'
 set xrange [0:0.349] 
-set xlabel "Etidocaine/POPC [mol/mol]" font 'Times,20'
-set ylabel "S^{β}_{CH}" font 'Times,20' offset -1,0
-set ytics font 'Times,18'
+set xlabel "Etidocaine/POPC [mol/mol]" font 'Times,22'
+set ylabel "ΔS^{β}_{CH}" font 'Times,22' offset -0.8,0
+set ytics font 'Times,20'
 
 plot  "seelig_experiment_etidocaine_beta.dat" using 2:($3*-0.00784+5.5*0.00784) with linespoints ls 5 lc rgb("#000000") notitle "Experiment (POPC), 298K" ,\
- "etidocaine_Paramchem_all_OP_vs_bound.dat" using ($2/200):($8+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 2 notitle "CHARMM36 Parameters 1",\
-"etidocaine_Paramchem_all_OP_vs_bound.dat" using ($2/200):($10+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 2 notitle ,\
+ "etidocaine_Paramchem_all_OP_vs_bound.dat" using ($2/200):($8+0.07640) with linespoints ls 1 notitle "CHARMM36 Parameters 1",\
+"etidocaine_Paramchem_all_OP_vs_bound.dat" using ($2/200):($10+0.07626) with linespoints ls 1 notitle ,\
 "etidocaine_Swiss_all_OP_vs_bound.dat" using ($2/200):($8+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 1 notitle "CHARMM36 Parameters 2",\
 "etidocaine_Swiss_all_OP_vs_bound.dat" using ($2/200):($10+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 1 notitle ,\
-"etidocaine_Paramchem_ECC_all_OP_vs_bound.out" using ($10/200):($4+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 notitle "Paramchem",\
-"etidocaine_Paramchem_ECC_all_OP_vs_bound.out" using ($10/200):($5+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 notitle ,\
+"etidocaine_Paramchem_ECC_all_OP_vs_bound.out" using ($10/200):($4+0.07640) with linespoints ls 2 notitle "Paramchem",\
+"etidocaine_Paramchem_ECC_all_OP_vs_bound.out" using ($10/200):($5+0.07626) with linespoints ls 2 notitle ,\
 
 
 #"etidocaine_Paramchem_converged_OP_bigBox.out" using ($10/200):($6+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc 3 notitle ,\
@@ -268,29 +277,29 @@ plot  "seelig_experiment_etidocaine_beta.dat" using 2:($3*-0.00784+5.5*0.00784) 
 
 
 @ETI_density
-set xlabel "Membrane normal [nm]" font 'Times,20'
-set ylabel "Number density" font 'Times,20' offset -1,0
+set xlabel "Membrane normal [nm]" font 'Times,22'
+set ylabel "Number density" font 'Times,20' offset -1.5,0
 
 set label 1 '140 mM' at graph 0.7,0.9 font 'Times,20'
 set yrange [0:32]
-set xrange [-13:13]
-set xtics 5 font 'Times,18'
-set ytics font 'Times,18'
-plot  "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_simulation2_run2022_density.out" using 1:4 with line ls 7 lw 3  lc 2 notitle "CHARMM36 Parameters 1",\
-      "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_ECC_run2022_density.out" using 1:4 with line ls 7 lw 3  lc 3 notitle "CHARMM36 Parameters 1",\
+set xrange [-5.99:5.99]
+set xtics 1 font 'Times,20'
+set ytics font 'Times,20'
+plot  "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_simulation2_run2022_density.out" using 1:4 with line ls 1 notitle "CHARMM36 Parameters 1",\
+      "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_ECC_run2022_density.out" using 1:4 with line ls 2 notitle "CHARMM36 Parameters 1",\
       "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_413_density.out" using 1:4 with line ls 7 lw 3  lc 1 notitle "CHARMM36 Parameters 1",\
       
      
       
 @TPP_density
-set xlabel "Membrane normal [nm]" font 'Times,20'
+set xlabel "Membrane normal [nm]" font 'Times,22'
 unset ylabel 
 
 set label 1 '140 mM' at graph 0.7,0.9 font 'Times,20'
 
-set xtics 1 font 'Times,18'
+set xtics 1 font 'Times,20'
 unset ytics 
-unset xrange
-plot  "TPP_B3LYP_140_Density.out" using 1:2 with line ls 7 lw 3  lc 4 notitle "CHARMM36 Parameters 1",\
-      "TPP_B3LYP_ECC_140_Density.out" using 1:2 with line ls 7 lw 3  lc 5 notitle "CHARMM36 Parameters 1",\
-      "TPP_proteinFF_140_Density.out" using 1:2 with line ls 7 lw 3  lc 6 notitle "CHARMM36 Parameters 1",\
+#unset xrange
+plot  "TPP_B3LYP_140_Density.out" using 1:2 with line ls 3 notitle "CHARMM36 Parameters 1",\
+      "TPP_B3LYP_ECC_140_Density.out" using 1:2 with line ls 4 notitle "CHARMM36 Parameters 1",\
+      "TPP_proteinFF_140_Density.out" using 1:2 with line ls 7 lw 3  lc 4 notitle "CHARMM36 Parameters 1",\
