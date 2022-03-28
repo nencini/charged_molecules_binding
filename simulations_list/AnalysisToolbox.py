@@ -170,6 +170,7 @@ def go_through_simulation(recieved_self):
     
     if not 'COMPOSITION' in sim:
         sim["COMPOSITION"]={}
+        topology_tpr= recieved_self.path + recieved_self.name+ "/" + recieved_self.name+ ".top"
         with open(top_file,"r") as f:
             molecules_list = False
             for line in f.readlines():
