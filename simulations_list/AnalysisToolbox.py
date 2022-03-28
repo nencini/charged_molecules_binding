@@ -19,6 +19,9 @@ from operator import add
 from linecache import getline
 
 from datetime import date
+
+import BindingToMembrane as BtM
+
 today = date.today()
 
 gc.collect()
@@ -122,43 +125,28 @@ class OrderParameter:
         # convert to numpy array
         return self.traj
 
-def go_through_simulation(path,name,system):
-    topology = path+name+"/"+name+".gro"
-    trajectory = path+name+"/"+name+".xtc"
-    top_file = path+name+"/"+name+".top"
-    topology_tpr = path+name+"/"+name+".tpr"
-    readme = path+name+ "/README.yaml"
+def go_through_simulation(recieved_self):
+
+    readme = recieved_self.path+recieved_self.name+ "/README.yaml"
     today = str(date.today())
     
-    u = mda.Universe(topology,trajectory)
     
     if not os.path.isfile(readme):
-        sim={}
+        recieved_self.readme={}
     else:
         with open(readme) as yaml_file:
-            sim = yaml.load(yaml_file, Loader=yaml.FullLoader)
+            recieved_self.readme = yaml.load(yaml_file, Loader=yaml.FullLoader)
+     
+    sim=check_for_latest_files(recieved_self)
        
-    begin_time=u.trajectory.time
-
-    if not  'TRAJECTORY_SIZE' in sim:   
-        sim['TRAJECTORY_SIZE'] = os.path.getsize(trajectory)/1048576
-
-    Nframes=len(u.trajectory)
-    timestep = u.trajectory.dt
-    
-    if not 'TIMESTEP' in sim: 
-        sim['TIMESTEP'] = timestep
-    
+    Nframes=len(recieved_self.mol.trajectory)
+    timestep = recieved_self.mol.trajectory.dt
     trj_length = Nframes * timestep
-    
-    if not 'TRJLENGTH' in sim:
-        sim['TRJLENGTH'] = trj_length
+    begin_time=recieved_self.mol.trajectory.time
         
-    if not 'TRJBEGIN' in sim:
-        sim['TRJBEGIN'] = begin_time
-        
-    if not 'TRJEND' in sim:
-        sim['TRJEND'] = begin_time+trj_length
+    sim["FILES"]["xtc"]['TIMESTEP'] = timestep
+    sim["FILES"]['xtc']['BEGIN'] = begin_time
+
         
     if not 'BINDINGEQ' in sim:
         sim['BINDINGEQ'] = input("Biding of {} eqilibrated after [ps] \n".format(output))
@@ -198,61 +186,44 @@ def go_through_simulation(path,name,system):
         yaml.dump(sim,f, sort_keys=False)
         
         
-    with open(system +"_"+ today+ '.out', 'a') as f:
-        try:
-            f.write("{:80} {:>5} {:>6} {:>4} {:>4} ".format(name,int(timestep),sim['TRJLENGTH']/1000,int(int(sim['BINDINGEQ'])/1000),sim['TEMPERATURE']))
-        except:
-            f.write("{:80} {:>5} {:>6} {:>4} {:>4} ".format(name,int(timestep),sim['TRJLENGTH']/1000,sim['BINDINGEQ'],sim['TEMPERATURE']))
-
-        for key in sim["COMPOSITION"]:
-            f.write("{:>5}: {:>6}, ".format(key, sim["COMPOSITION"][key]))
-        f.write("\n")
-        
     print("great success!!!")
     
-def initialize_output(system,folder_path):
-    today = str(date.today())
-    with open(system +"_"+ today+ '.out', 'w') as f:
-        f.write("# List of simulations for: {} \n".format(system))
-        f.write("# Path: {} \n".format(folder_path))
-        f.write("# Create on: {} \n \n".format(today))
-        f.write("#     1 - System \n")
-        f.write("#     2 - Saving frequency [ps]  \n")
-        f.write("#     3 - Total length [ns] \n")
-        f.write("#     4 - Binding equilibrated after [ns]  \n")
-        f.write("#     5 - Temperature [K] \n")
-        f.write("#     6 - Composition \n \n")
 
-def initialize_output_analyze(system,folder_path):  
-    today = str(date.today())
-    column=5
-    with open(system + '_analysis_'+ today +'.out', 'w') as f:
-            f.write("# List of simulations for: {} \n".format(system))
-            f.write("# Path: {} \n".format(folder_path))
-            f.write("# Create on: {} \n \n".format(today))
-            f.write("#     1 - System \n")
-            f.write("#     2 - Start time [ns] \n")
-            f.write("#     3 - End time [ns] \n")
-            f.write("#     4 - Saving frequency [ps]  \n")
-          
+
+
+def check_for_latest_files(recieved_self):
+    files_to_consider=["xtc","edr","tpr","top","mdp","ndx","gro","cpt","log"]
+    sim=recieved_self.readme
+    if not "FILES" in sim:
+        sim["FILES"]={}
+    for fileU in files_to_consider:
+        if not fileU in sim["FILES"]:
+            sim["FILES"][fileU]={}
+
+        file_adress = recieved_self.path+recieved_self.name+"/"+recieved_self.name+"."+fileU
+        sim["FILES"][fileU]["NAME"] = recieved_self.name+"."+fileU
     
-    ordPars={}
-    with open("OP_def.def","r") as f:
-            for line in f.readlines():
-                if not line.startswith("#"):
-                    items = line.split()
-                    ordPars[items[0]] = OrderParameter(*items)
-    
-    with open(system + '_analysis_'+ today +'.out', 'a') as f:
-        f.write("#     {}-{} - ".format(column,column+8))
-        for op in ordPars:
-            f.write("{} , error {}, ".format(op, op))
-        f.write(" \n")
-    column+=9
+        try:
+            timepre=os.path.getmtime(file_adress)
+            file_mod = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timepre))
+            sim["FILES"][fileU]["SIZE"]=os.path.getsize(file_adress)/1048576
+            sim["FILES"][fileU]["MODIFIED"] = file_mod
+        except:
+            sim["FILES"][fileU]["SIZE"]= "none"
+            sim["FILES"][fileU]["MODIFIED"] = "none"
         
-    with open(system + '_analysis_'+ today +'.out', 'a') as f:
-        f.write("#     {}-{} - Box - Z,  APL \n".format(column,column+1))
-    column+=2
+    Nframes=len(recieved_self.mol.trajectory)
+    timestep = recieved_self.mol.trajectory.dt
+    trj_length = Nframes * timestep
+    begin_time=recieved_self.mol.trajectory.time
+        
+    sim["FILES"]["xtc"]['SAVING_FREQUENCY'] = timestep
+    sim["FILES"]['xtc']['LENGTH'] = trj_length
+    sim["FILES"]['xtc']['BEGIN'] = begin_time
+    print("Got into checking")
+    print(recieved_self.path)
+    
+    return sim
 
 
             
@@ -276,7 +247,7 @@ class AnalysisToolbox:
         self.readme=content
         self.system=system
         
-        self.check_for_latest_files()
+        sim=check_for_latest_files(self)
         
         choose_function = {"BOX_DIMENSIONS": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
                            "ORDER_PARAMETER": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter],
@@ -295,6 +266,27 @@ class AnalysisToolbox:
             #self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
         
             """For whathever reason does not work withou the outer loop. IT SHOULD though!!"""
+
+            for i in range(0,len(analysis)):
+                for analyze in analysis:
+                    print("check if analyzed: {}".format(analyze))
+                    if analyze in self.readme["ANALYSIS"]:
+                        if "FROM_XTC" in self.readme["ANALYSIS"][analyze]:
+                            if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
+                                analysis.remove(analyze)
+            
+            if 'BINDING' in analysis:
+            	possible_molecules=["etidocaine","dibucaine","TPP"]
+            	atoms={"etidocaine":{'atoms':49,'cutOff':0.45,'boundAtoms':15}, "dibucaine":{'atoms':55,'cutOff':0.5,'boundAtoms':33},"TPP":{'atoms':45,'cutOff':0.475,'boundAtoms':30}}
+            	if self.system in possible_molecules:
+            	    resnames=["etidocaine","ETI","TPP","TPA","dibucaine","DIB"]
+            	    for resname in resnames:
+            	        if resname in self.readme["COMPOSITION"]:      
+            	            BtM.AnalyzeBindingDefinition(self.path,self.name,"yes",int(self.resname['COMPOSITIONS'][resname]),
+            	            atoms[self.system]['atoms'],[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025],0)
+            	            BtM.Time_evolution(self.name,atoms[self.system]['atoms'],"evolve",[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025])
+            	analysis.remove('BINDING')
+            
             
             if not 'BINDINGEQ' in self.readme:
                 analysis=[]
@@ -304,13 +296,7 @@ class AnalysisToolbox:
                 except:
                     analysis=[]
             
-            for i in range(0,len(analysis)):
-                for analyze in analysis:
-                    print("check if analyzed: {}".format(analyze))
-                    if analyze in self.readme["ANALYSIS"]:
-                        if "FROM_XTC" in self.readme["ANALYSIS"][analyze]:
-                            if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
-                                analysis.remove(analyze)
+
            
             if analysis==[]:
                 pass
@@ -360,33 +346,8 @@ class AnalysisToolbox:
     # MODIFICATIONS
     ###############
     
-    def check_for_latest_files(self):
-        files_to_consider=["xtc","edr","tpr","top","mdp","ndx","gro","cpt","log"]
-        sim=self.readme
-        if not "FILES" in sim:
-            sim["FILES"]={}
-        for file in files_to_consider:
-            if not file in sim["FILES"]:
-                sim["FILES"][file]={}
-    
-            file_adress = self.path+self.name+"/"+self.name+"."+file
-            sim["FILES"][file]["NAME"] = self.name+"."+file
-    
-            try:
-                timepre=os.path.getmtime(file_adress)
-                file_mod = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timepre))
-                sim["FILES"][file]["SIZE"]=os.path.getsize(file_adress)/1048576
-                sim["FILES"][file]["MODIFIED"] = file_mod
-            except:
-                sim["FILES"][file]["SIZE"]= "none"
-                sim["FILES"][file]["MODIFIED"] = "none"
-        
-        Nframes=len(self.mol.trajectory)
-        timestep = self.mol.trajectory.dt
-        trj_length = Nframes * timestep
-        
-        sim["FILES"]["xtc"]['TIMESTEP'] = timestep
-        sim["FILES"]['xtc']['LENGTH'] = trj_length
+    def add_new_folders(self):
+        go_through_simulation(self)
                 
                 
     ############
