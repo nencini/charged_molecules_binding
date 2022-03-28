@@ -240,17 +240,20 @@ class AnalysisToolbox:
         self.path=path
         self.name=name
         
-        readme = path+name+ "/README.yaml"
-        with open(readme) as yaml_file:
-            content = yaml.load(yaml_file, Loader=yaml.FullLoader)
         
-        self.readme=content
         self.system=system
         
         
         #self.analysis()
         
     def analysis(self):
+        
+        readme = self.path+self.name+ "/README.yaml"
+        with open(readme) as yaml_file:
+            content = yaml.load(yaml_file, Loader=yaml.FullLoader)
+        
+        self.readme=content
+        
         sim=check_for_latest_files(self)
         
         choose_function = {"BOX_DIMENSIONS": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
