@@ -249,7 +249,7 @@ class AnalysisToolbox:
         
         #self.analysis()
         
-    def analysis(self):
+    def analysis_module(self):
         
         readme = self.path+self.name+ "/README.yaml"
         with open(readme) as yaml_file:
