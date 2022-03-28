@@ -154,6 +154,7 @@ def go_through_simulation(recieved_self):
         
     if not 'TEMPERATURE' in sim:
         #get temperature from tpr; taken from AddData.py by Anne Kiirikki
+        topology_tpr= recieved_self.path + recieved_self.name+ "/" + recieved_self.name+ ".tpr"
         file1 =  'temporary_tpr.txt'
 
         print("Exporting information with gmx dump")  
@@ -164,6 +165,7 @@ def go_through_simulation(recieved_self):
             for line in tpr_info:
                 if 'ref-t' in line:
                     sim['TEMPERATURE']=float(line.split()[1])
+        os.system('rm '+file1)
   
     
     if not 'COMPOSITION' in sim:
