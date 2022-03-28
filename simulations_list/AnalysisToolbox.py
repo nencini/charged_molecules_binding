@@ -285,11 +285,11 @@ class AnalysisToolbox:
                     atoms={"etidocaine":{'atoms':49,'cutOff':0.45,'boundAtoms':15}, "dibucaine":{'atoms':55,'cutOff':0.5,'boundAtoms':33},"TPP":{'atoms':45,'cutOff':0.475,'boundAtoms':30}}
                     if self.system in possible_molecules:
                         resnames=["etidocaine","ETI","TPP","TPA","dibucaine","DIB"]
-                            for resname in resnames:
-                                if resname in self.readme["COMPOSITION"]:      
-                                    BtM.AnalyzeBindingDefinition(self.path,self.name,"yes",int(self.resname['COMPOSITIONS'][resname]),
-                                    atoms[self.system]['atoms'],[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025],0)
-                                    BtM.Time_evolution(self.name,atoms[self.system]['atoms'],"evolve",[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025])
+                        for resname in resnames:
+                            if resname in self.readme["COMPOSITION"]:      
+                                BtM.AnalyzeBindingDefinition(self.path,self.name,"yes",int(self.resname['COMPOSITIONS'][resname]),
+                                atoms[self.system]['atoms'],[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025],0)
+                                BtM.Time_evolution(self.name,atoms[self.system]['atoms'],"evolve",[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025])
                     analysis.remove('BINDING')
             
             
