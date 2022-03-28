@@ -257,14 +257,14 @@ class AnalysisToolbox:
         
         self.readme=content
         
-        sim=check_for_latest_files(self)
+        self.readme=check_for_latest_files(self)
         
         choose_function = {"BOX_DIMENSIONS": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
                            "ORDER_PARAMETER": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter],
                           "binding_coefficient": [self.ini_binding_coefficient,self.binding_coefficient,self.fin_binding_coefficient]}
                                                  
         
-        print(name)
+        print(self.name)
 
         if not 'ANALYSIS' in self.readme:
             self.readme['ANALYSIS']={}
@@ -298,6 +298,8 @@ class AnalysisToolbox:
             
             
             if not 'BINDINGEQ' in self.readme:
+                analysis=[]
+            elif self.readme['BINDINGEQ']=="?":
                 analysis=[]
             else:
                 try:
