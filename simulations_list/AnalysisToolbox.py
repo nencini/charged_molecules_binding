@@ -247,99 +247,104 @@ class AnalysisToolbox:
         self.readme=content
         self.system=system
         
-        sim=check_for_latest_files(self)
         
-        choose_function = {"BOX_DIMENSIONS": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
+        self.analysis()
+        
+        def analysis(self):
+            sim=check_for_latest_files(self)
+        
+            choose_function = {"BOX_DIMENSIONS": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
                            "ORDER_PARAMETER": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter],
                           "binding_coefficient": [self.ini_binding_coefficient,self.binding_coefficient,self.fin_binding_coefficient]}
                                                  
         
-        print(name)
+            print(name)
 
-        if not 'ANALYSIS' in self.readme:
-            self.readme['ANALYSIS']={}
+            if not 'ANALYSIS' in self.readme:
+                self.readme['ANALYSIS']={}
 
         
-        self.column=5
-        try:
-            #probably for OP, should work without it here
-            #self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
+            self.column=5
+            try:
+                #probably for OP, should work without it here
+                #self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme['TRAJECTORY']['TIMESTEP']))
         
-            """For whathever reason does not work withou the outer loop. IT SHOULD though!!"""
+                """For whathever reason does not work withou the outer loop. IT SHOULD though!!"""
 
-            for i in range(0,len(analysis)):
-                for analyze in analysis:
-                    print("check if analyzed: {}".format(analyze))
-                    if analyze in self.readme["ANALYSIS"]:
-                        if "FROM_XTC" in self.readme["ANALYSIS"][analyze]:
-                            if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
-                                analysis.remove(analyze)
+                for i in range(0,len(analysis)):
+                    for analyze in analysis:
+                        print("check if analyzed: {}".format(analyze))
+                        if analyze in self.readme["ANALYSIS"]:
+                            if "FROM_XTC" in self.readme["ANALYSIS"][analyze]:
+                                if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
+                                    analysis.remove(analyze)
             
-            if 'BINDING' in analysis:
-            	possible_molecules=["etidocaine","dibucaine","TPP"]
-            	atoms={"etidocaine":{'atoms':49,'cutOff':0.45,'boundAtoms':15}, "dibucaine":{'atoms':55,'cutOff':0.5,'boundAtoms':33},"TPP":{'atoms':45,'cutOff':0.475,'boundAtoms':30}}
-            	if self.system in possible_molecules:
-            	    resnames=["etidocaine","ETI","TPP","TPA","dibucaine","DIB"]
-            	    for resname in resnames:
-            	        if resname in self.readme["COMPOSITION"]:      
-            	            BtM.AnalyzeBindingDefinition(self.path,self.name,"yes",int(self.resname['COMPOSITIONS'][resname]),
-            	            atoms[self.system]['atoms'],[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025],0)
-            	            BtM.Time_evolution(self.name,atoms[self.system]['atoms'],"evolve",[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025])
-            	analysis.remove('BINDING')
+                
+                if 'BINDING' in analysis:
+                    possible_molecules=["etidocaine","dibucaine","TPP"]
+                    atoms={"etidocaine":{'atoms':49,'cutOff':0.45,'boundAtoms':15}, "dibucaine":{'atoms':55,'cutOff':0.5,'boundAtoms':33},"TPP":{'atoms':45,'cutOff':0.475,'boundAtoms':30}}
+                    if self.system in possible_molecules:
+                        resnames=["etidocaine","ETI","TPP","TPA","dibucaine","DIB"]
+                            for resname in resnames:
+                                if resname in self.readme["COMPOSITION"]:      
+                                    BtM.AnalyzeBindingDefinition(self.path,self.name,"yes",int(self.resname['COMPOSITIONS'][resname]),
+                                    atoms[self.system]['atoms'],[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025],0)
+                                    BtM.Time_evolution(self.name,atoms[self.system]['atoms'],"evolve",[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025])
+                    analysis.remove('BINDING')
             
             
-            if not 'BINDINGEQ' in self.readme:
-                analysis=[]
-            else:
-                try:
-                    int(self.readme['BINDINGEQ'])
-                except:
+                if not 'BINDINGEQ' in self.readme:
                     analysis=[]
+                else:
+                    try:
+                        int(self.readme['BINDINGEQ'])
+                    except:
+                        analysis=[]
             
 
            
-            if analysis==[]:
-                pass
-            else:
-                for analyze in analysis:
-                    choose_function[analyze][0]()
-
-                begin_analysis=int(int(self.readme['BINDINGEQ'])/int(self.readme["FILES"]['xtc']['TIMESTEP']))
-                print("going throught the trajectory")
-                self.frames=0
-                
-                for self.frame in self.mol.trajectory[begin_analysis:]:
-                    last_frame=self.frame.time
-
+                if analysis==[]:
+                    pass
+                else:
                     for analyze in analysis:
-                        choose_function[analyze][1]()
-                    self.frames+=1
-                
-                print("exiting trajectory, writing output ...")
-            
-                for analyze in analysis:
-                    choose_function[analyze][2]()
-                print("exit output")
-        except Exception as e:
-            print(e)
-            print("some trouble")
+                        choose_function[analyze][0]()
 
-            with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
-                f.write("{:75}  Trouble ".format(name))
-            try:
-                with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
-                    f.write("eqil time: {}, total time: {} \n".format(self.readme['BINDINGEQ'],self.readme["FILES"]['xtc']['LENGTH']))
-            except:
-                pass
+                    begin_analysis=int(int(self.readme['BINDINGEQ'])/int(self.readme["FILES"]['xtc']['TIMESTEP']))
+                    print("going throught the trajectory")
+                    self.frames=0
+                
+                    for self.frame in self.mol.trajectory[begin_analysis:]:
+                        last_frame=self.frame.time
+
+                        for analyze in analysis:
+                            choose_function[analyze][1]()
+                        self.frames+=1
+                
+                    print("exiting trajectory, writing output ...")
             
-            try:
-                os.system('rm ' + self.output + '.xtc' ) 
-            except:
-                pass
+                    for analyze in analysis:
+                        choose_function[analyze][2]()
+                    print("exit output")
+            except Exception as e:
+                print(e)
+                print("some trouble")
+
+                with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
+                    f.write("{:75}  Trouble ".format(name))
+                try:
+                    with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
+                        f.write("eqil time: {}, total time: {} \n".format(self.readme['BINDINGEQ'],self.readme["FILES"]['xtc']['LENGTH']))
+                except:
+                    pass
+            
+                try:
+                    os.system('rm ' + self.output + '.xtc' ) 
+                except:
+                    pass
         
              
-        with open(readme, 'w') as f:
-            yaml.dump(self.readme,f, sort_keys=False)
+            with open(readme, 'w') as f:
+                yaml.dump(self.readme,f, sort_keys=False)
     
     
     ###############
@@ -459,9 +464,7 @@ class AnalysisToolbox:
         self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['MINUS_VALUE']=float(minus_lipid/minus_water*count_minus_water/count_minus_lipid)
         self.readme['ANALYSIS']['BINDING_COEFFICIENT']['DENSITY_CROSS']['PLUS_VALUE']=float(plus_lipid/plus_water*count_plus_water/count_plus_lipid)
         
-        with open(self.output+"_density.out", 'wb') as f:
-            np.savetxt(f, density,fmt='%8.4f  %.8f %.8f %.8f')
-      
+        
 
     ############
     # BOX DIMENSIONS
@@ -484,10 +487,7 @@ class AnalysisToolbox:
    
     def fin_box_dimensions(self):
         average_dimensions=np.average(self.box_sizes,axis=0)
-        with open(self.system + '_analysis_'+ self.today +'.out', 'a') as f:
-            f.write("{: 3.2f} {: 3.2f}  ".format( average_dimensions[1], average_dimensions[2]**2/100))
-        with open(self.output+'_boxSizes_' +self.today+ '.out', 'w') as f:
-            np.savetxt(f, self.box_sizes,fmt='%8.4f  %.8f %.8f')
+        
             
         if not 'BOX_DIMENSIONS' in self.readme['ANALYSIS']:
             self.readme['ANALYSIS']['BOX_DIMENSIONS']={}
