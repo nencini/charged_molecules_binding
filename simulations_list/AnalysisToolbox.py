@@ -242,7 +242,7 @@ class AnalysisToolbox:
         self.today = str(date.today())
         self.path=path
         self.name=name
-        
+        self.analysis=analysis
         
         self.system=system
         
@@ -275,16 +275,16 @@ class AnalysisToolbox:
              
             """For whathever reason does not work withou the outer loop. IT SHOULD though!!"""
 
-            for i in range(0,len(analysis)):
-                for analyze in analysis:
+            for i in range(0,len(self.analysis)):
+                for analyze in self.analysis:
                     print("check if analyzed: {}".format(analyze))
                     if analyze in self.readme["ANALYSIS"]:
                         if "FROM_XTC" in self.readme["ANALYSIS"][analyze]:
                             if self.readme["ANALYSIS"][analyze]["FROM_XTC"]==self.readme["FILES"]["xtc"]["MODIFIED"]:                
-                                analysis.remove(analyze)
+                                self.analysis.remove(analyze)
             
                 
-            if 'BINDING' in analysis:
+            if 'BINDING' in self.analysis:
                 possible_molecules=["etidocaine","dibucaine","TPP"]
                 atoms={"etidocaine":{'atoms':49,'cutOff':0.45,'boundAtoms':15}, "dibucaine":{'atoms':55,'cutOff':0.5,'boundAtoms':33},"TPP":{'atoms':45,'cutOff':0.475,'boundAtoms':30}}
                 if self.system in possible_molecules:
@@ -294,25 +294,25 @@ class AnalysisToolbox:
                             BtM.AnalyzeBindingDefinition(self.path,self.name,"yes",int(self.resname['COMPOSITIONS'][resname]),
                             atoms[self.system]['atoms'],[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025],0)
                             BtM.Time_evolution(self.name,atoms[self.system]['atoms'],"evolve",[atoms[self.system]['cutOff'],atoms[self.system]['cutOff']+0.01,0.025])
-                analysis.remove('BINDING')
+                self.analysis.remove('BINDING')
             
             
             if not 'BINDINGEQ' in self.readme:
-                analysis=[]
+                self.analysis=[]
             elif self.readme['BINDINGEQ']=="?":
-                analysis=[]
+                self.analysis=[]
             else:
                 try:
                     int(self.readme['BINDINGEQ'])
                 except:
-                    analysis=[]
+                    self.analysis=[]
             
 
            
-            if analysis==[]:
+            if self.analysis==[]:
                 pass
             else:
-                for analyze in analysis:
+                for analyze in self.analysis:
                     choose_function[analyze][0]()
 
                 begin_analysis=int(int(self.readme['BINDINGEQ'])/int(self.readme["FILES"]['xtc']['TIMESTEP']))
@@ -322,13 +322,13 @@ class AnalysisToolbox:
                 for self.frame in self.mol.trajectory[begin_analysis:]:
                     last_frame=self.frame.time
 
-                    for analyze in analysis:
+                    for analyze in self.analysis:
                         choose_function[analyze][1]()
                     self.frames+=1
                 
                 print("exiting trajectory, writing output ...")
             
-                for analyze in analysis:
+                for analyze in self.analysis:
                     choose_function[analyze][2]()
                 print("exit output")
         except Exception as e:
