@@ -149,7 +149,7 @@ def go_through_simulation(recieved_self):
 
         
     if not 'BINDINGEQ' in sim:
-        sim['BINDINGEQ'] = input("Biding of {} eqilibrated after [ps] \n".format(output))
+        sim['BINDINGEQ'] = input("Biding of {} eqilibrated after [ps] \n".format(recieved_self.name))
 
         
     if not 'TEMPERATURE' in sim:
