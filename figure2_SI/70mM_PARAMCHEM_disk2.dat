@@ -1,7 +1,8 @@
-# Created by R.Nencini on: 2022-03-24 
+# Created by R.Nencini on: 2022-03-28 
  
 #1 System 
 #2 Real system conc. = eti/waters * 55.5  
 #3-#10 alpha1, alp1 err - beta2, beta2 err 
 #11 repeat distance 
  
+etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem 69.4 -0.0226 0.0023 -0.0166 0.0024 -0.1266 0.0016 -0.1223 0.0017  75.2 
