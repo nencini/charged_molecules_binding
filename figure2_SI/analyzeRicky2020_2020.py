@@ -25,7 +25,7 @@ today = date.today()
 
 gc.collect()
 
-folder_path="/media/nenciric/Ricky2020/2020/simulations/"
+folder_path="/media/nenciric/disk2/2020/simulations/"
 systems=["etidocaine","TPP","SMS","dibucaine"]
 
 

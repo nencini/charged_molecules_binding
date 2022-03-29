@@ -258,7 +258,8 @@ class AnalysisToolbox:
         self.readme=content
         
         self.readme=check_for_latest_files(self)
-        
+        print(self.readme["FILES"]["xtc"]["MODIFIED"])
+
         choose_function = {"BOX_DIMENSIONS": [self.ini_box_dimensions,self.box_dimensions,self.fin_box_dimensions],
                            "ORDER_PARAMETER": [self.ini_order_parameter,self.order_parameter,self.fin_order_parameter],
                           "binding_coefficient": [self.ini_binding_coefficient,self.binding_coefficient,self.fin_binding_coefficient]}

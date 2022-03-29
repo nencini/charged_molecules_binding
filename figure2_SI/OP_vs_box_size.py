@@ -7,7 +7,7 @@ today = date.today()
 
 
 concentrations=["30mM","35mM","70mM","140mM","280mM","420mM","1968mM"]
-folder_path="/media/nenciric/Ricky20201/simulations/"
+folder_path="/media/nenciric/disk1/simulations/"
 waters=["5200w","5985w","7581w","8800w","9975w","11252w","19900w","20000w","177600w"]
 
 
@@ -106,7 +106,7 @@ for conc in concentrations:
                                         content["ANALYSIS"]["ORDER_PARAMETER"]["beta2_error"],
                                         content["ANALYSIS"]["BOX_DIMENSIONS"]["REPEAT_DISTANCE"]))
 
-folder_path="/media/nenciric/Ricky2020/2020/simulations/"
+folder_path="/media/nenciric/disk2/2020/simulations/"
 for conc in concentrations:
     with open(conc+"_SWISS_disk2.dat","w") as f:
         f.write("# Created by R.Nencini on: {} \n \n".format(today))
