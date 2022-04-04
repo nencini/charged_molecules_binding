@@ -85,7 +85,11 @@ unset ytics
 unset xtics 
 unset xlabel
 
-plot "140mM_PARAMCHEM_combinedDisks.dat" using 11:($7+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") title "ParamChem, 140mM",\
+plot "70mM_PARAMCHEM_combinedDisks.dat" using 11:($7+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0088bb") title "ParamChem, 70mM",\
+"70mM_PARAMCHEM_combinedDisks.dat" using 11:($7+0.07640):($8+0.00106) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0088bb") notitle,\
+"70mM_PARAMCHEM_combinedDisks.dat" using 11:($9+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0088bb") notitle ,\
+"70mM_PARAMCHEM_combinedDisks.dat" using 11:($9+0.07626):($10+0.00106) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0088bb") notitle ,\
+"140mM_PARAMCHEM_combinedDisks.dat" using 11:($7+0.07640) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") title "ParamChem, 140mM",\
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($7+0.07640):($8+0.00106) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle,\
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($9+0.07626) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($9+0.07626):($10+0.00106) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
@@ -95,11 +99,14 @@ set xtics 2 font 'Times,16'
 
 set xlabel "Repeated distance [nm]" font 'Times,20'
 @M04
-plot  "140mM_PARAMCHEM_combinedDisks.dat" using 11:($3-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36, 298K",\
+plot  "70mM_PARAMCHEM_combinedDisks.dat" using 11:($3-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0088bb") notitle "CHARMM36, 298K",\
+"70mM_PARAMCHEM_combinedDisks.dat" using 11:($3-0.03289):($4+0.00116) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0088bb") notitle "CHARMM36, 298K",\
+"70mM_PARAMCHEM_combinedDisks.dat" using 11:($5-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0088bb") notitle ,\
+"70mM_PARAMCHEM_combinedDisks.dat" using 11:($5-0.03618):($6+0.00116) with yerrorbars  ls 7 lw 3 ps 0.6 pt 7 lc rgb("#0088bb") notitle ,\
+"140mM_PARAMCHEM_combinedDisks.dat" using 11:($3-0.03289) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36, 298K",\
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($3-0.03289):($4+0.00116) with yerrorbars ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle "CHARMM36, 298K",\
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($5-0.03618) with linespoints ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
 "140mM_PARAMCHEM_combinedDisks.dat" using 11:($5-0.03618):($6+0.00116) with yerrorbars  ls 7 lw 3 ps 0.6 pt 7 lc rgb("#00aa00") notitle ,\
-
 
 
 @M05
