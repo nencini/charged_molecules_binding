@@ -114,7 +114,7 @@ set title "70mM, ParamChem"
 
 plot "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_0-947.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_947-1422.txt" using ($0/10+947):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
-"etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15.txt" using ($0/10+947):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
+"etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15.txt" using ($0/10+1422):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_19900waters_paramchem_450_15.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle 
 
  
