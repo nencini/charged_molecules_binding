@@ -1,0 +1,46 @@
+set size 1,1
+set terminal pdf enhanced size 6,4
+set encoding utf8
+set output "140mM_density_plot_ETI_TPP_Ca_Na.pdf"
+
+
+set ytics format "%.2f"
+ 
+set key above left maxcols 2 font 'Times,18' 
+set key reverse
+set key Left
+
+      
+
+
+#set label format small
+set datafile commentschar "@#$%&"
+
+
+
+set style line 1 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#96c193"
+set style line 2 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#3d5954"
+set style line 3 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#9693c1"
+set style line 4 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#3e209d"
+
+####################################################################################################33
+
+set ytics font 'Times, 20'
+set xtics   font 'Times,18'
+#set title "Etidocaine"
+set ylabel "Number Density"  font 'Times,22' offset -0.2,0
+set xlabel  "Membrane normal [nm]"  font 'Times,20' 
+set xrange [-6:6]
+
+set style fill transparent solid 0.35 noborder
+plot "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_simulation2_run2022_density.out" using 1:($2/10/25)  with filledcurves y1=0 lw 3 lc 3 title "Water" ,\
+"PN_model_310K_TIP3P_ECC_ions_154mM_sodium_PC.finalDensity" using 1:($2/5/25) with filledcurves y1=0 lw 3 lc rgb("#000000") title "POPC membrane" ,\
+"etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_simulation2_run2022_ETI.finalDensity" using 1:($2/49) with lines lw 3  lc 1 title "Etidocaine 139 mM" ,\
+"TPP_POPC_CHARMM36_298K_140mM_20000waters_TPA.finalDensity" using 1:($2/45) with lines lw 3 lc 4 title "TPP 139 mM" ,\
+"PN_model_310K_TIP3P_ECC_ions_113mM_calcium_bigBox_CA.finalDensity"  using 1:($2) with lines lw 3 lc 5 title "Calcium ions 111 mM -big" ,\
+"PN_model_310K_TIP3P_ECC_ions_113mM_calcium_CA.finalDensity"  using 1:($2) with lines lw 3 lc 6 title "Calcium ions 111 mM small" ,\
+"PN_model_310K_TIP3P_ECC_ions_154mM_sodium_NA.finalDensity" using 1:($2) with lines lw 3 lc 2 title "Sodium ions 154 mM" ,\
+
+
+#"ETI_paramchem_140_Density.out" using 1:($2/49) with lines lw 3  lc 5 title "Etidocaine small " ,\
+#"etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_ECC_run2022_density.out" using 1:3 with lines lw 3 notitle "Etidocaine" ,\
