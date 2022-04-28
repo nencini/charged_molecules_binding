@@ -1,0 +1,94 @@
+
+set size 1,1
+set terminal pdf enhanced size 6,4
+set encoding utf8
+set output "dens_eti.pdf"
+ 
+set yrange [-0.128:0.005] 
+set ytics format "%.2f"
+ 
+set key inside left maxcols 1 font 'Times,17' 
+set key reverse
+set key Left
+
+      
+
+
+#set label format small
+set datafile commentschar "@#$%&"
+
+############################################################################## 
+
+Left_margin=0.13
+Center_horizontal=0.555
+Right_margin=0.98
+
+Top_margin=0.91
+Center_v1=0.74
+Center_v2=0.57
+Center_v3=0.40
+Center_v4=0.23
+Bottom_margin=0.04
+
+ETI_response = "set tmargin at screen Top_margin; set bmargin at screen Center_v1+0.015; set lmargin at screen Left_margin; set rmargin at screen Center_horizontal"
+TPP_response = "set tmargin at screen Top_margin; set bmargin at screen Center_v1+0.015; set lmargin at screen Center_horizontal; set rmargin at screen Right_margin"
+
+
+ETI_response_beta = "set tmargin at screen Center_v1+0.015; set bmargin at screen Center_v2+0.03; set lmargin at screen Left_margin; set rmargin at screen Center_horizontal"
+TPP_response_beta = "set tmargin at screen Center_v1+0.015; set bmargin at screen Center_v2+0.03; set lmargin at screen Center_horizontal; set rmargin at screen Right_margin"
+
+
+
+ETI_proove = "set tmargin at screen Center_v2-0.03; set bmargin at screen Center_v3-0.015; set lmargin at screen Left_margin; set rmargin at screen Center_horizontal"
+TPP_proove = "set tmargin at screen Center_v2-0.03; set bmargin at screen Center_v3-0.015; set lmargin at screen Center_horizontal; set rmargin at screen Right_margin"
+
+ETI_proove_beta = "set tmargin at screen Center_v3-0.015; set bmargin at screen Center_v4; set lmargin at screen Left_margin; set rmargin at screen Center_horizontal"
+TPP_proove_beta = "set tmargin at screen Center_v3-0.015; set bmargin at screen Center_v4; set lmargin at screen Center_horizontal; set rmargin at screen Right_margin"
+
+
+
+ETI_density = "set tmargin at screen Center_v4-0.07; set bmargin at screen Bottom_margin; set lmargin at screen Left_margin; set rmargin at screen Center_horizontal"
+TPP_density = "set tmargin at screen Center_v4-0.07; set bmargin at screen Bottom_margin;  set lmargin at screen Center_horizontal; set rmargin at screen Right_margin"
+
+
+
+
+M01 = "set tmargin at screen 0.85; set bmargin at screen 0.5"
+M02 = "set tmargin at screen 0.45; set bmargin at screen 0.1"
+
+
+set style line 1 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#96c193"
+set style line 2 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#3d5954"
+set style line 3 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#9693c1"
+set style line 4 lt 1 lw 3 pt 7 ps 0.6 linecolor rgb "#3e209d"
+
+####################################################################################################33
+#plot the beta for calcium
+unset xtics
+#set size ratio 0.5
+
+
+
+set style fill transparent solid 0.25 # partial transparency
+set style fill noborder # no separate top/bottom lines
+
+
+
+
+
+set xlabel "Membrane normal [nm]" font 'Times,20'
+set ylabel "Number density" font 'Times,20' offset -0.8,0
+
+set label 1 '140 mM' at graph 0.7,0.9 font 'Times,20'
+set yrange [0:32]
+#set xrange [-5.99:5.99]
+set xtics 10 font 'Times,20'
+set ytics font 'Times,20'
+plot  "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_413_density.out" using 1:4 with line ls 7 lw 3  lc 1 title "CHARMM36 - SwissParam",\
+      "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_simulation2_run2022_density.out" using 1:4 with line ls 1 title "CHARMM36 - ParamChem",\
+      "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_ECC_run2022_density.out" using 1:4 with line ls 2 title "CH36 - ParamChem ECC",\
+      
+      
+     
+      
+
