@@ -1,0 +1,125 @@
+unset multiplot
+set size 1,1
+set terminal pdf enhanced size 10,7.5
+set encoding utf8
+set output "tpp_binding_main.pdf"
+ 
+set yrange [0:3]
+set ytics format "%.2f" font 'Times,16'
+ 
+set key inside left maxcols 2
+set key reverse
+set key Left
+
+      
+
+
+#set label format small
+set datafile commentschar "@#$%&"
+set multiplot layout 3,3 
+
+
+set xlabel "Time [nm]" font 'Times,16'
+set ylabel "Bound particles"  font 'Times,16'
+
+set style fill transparent solid 0.25 # partial transparency
+set style fill noborder # no separate top/bottom lines
+
+
+
+
+set xtics 500 font 'Times,16'
+set xrange [0:]
+set yrange [0:40]
+set title "140mM, ProteinFF" font 'Times,20'
+
+plot  "TPP_POPC_CHARMM36_298K_140mM_20000waters_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+ 
+
+
+
+set xtics 500
+set xrange [0:]
+#set yrange [0:60]
+set title "140mM, QM Charges"
+plot "TPP_POPC_CHARMM36_298K_140mM_20000waters_paramchem_B3LYP_ESP_charges_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+
+
+
+set xtics 500
+set xrange [0:]
+set yrange [0:70]
+set title "140mM, ECC - QM Charges"
+plot "TPP_POPC_CHARMM36_298K_140mM_20000waters_paramchem_B3LYP_ESP_charges_ECC_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+
+
+
+set xtics 500
+set xrange [0:]
+#set yrange [0:100]
+set title "280mM, ProteinFF"
+plot  "TPP_POPC_CHARMM36_298K_280mM_20000waters_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+
+
+
+set xtics 1000
+set xrange [0:]
+#set yrange [0:100]
+set title "280mM, QM Charges"
+plot "TPP_POPC_CHARMM36_298K_280mM_20000waters_paramchem_B3LYP_ESP_charges_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+
+
+set xtics 500
+set xrange [0:]
+#set yrange [0:110]
+set title "280mM, ECC - QM Charges"
+plot "TPP_POPC_CHARMM36_298K_280mM_20000waters_paramchem_B3LYP_ESP_charges_ECC_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+
+
+
+
+set xtics 500
+set xrange [0:]
+#set yrange [0:150]
+set title "420mM, ProteinFF"
+plot  "TPP_POPC_CHARMM36_298K_420mM_20000waters_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+set xtics 1000
+set xrange [0:]
+#set yrange [0:150]
+set title "420mM, QM Charges"
+plot "TPP_POPC_CHARMM36_298K_420mM_20000waters_paramchem_B3LYP_ESP_charges_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+
+
+
+
+
+
+
+
+
+set xtics 500
+set xrange [0:]
+#set yrange [0:60]
+set title "420mM, ECC - QM Charges"
+
+plot "TPP_POPC_CHARMM36_298K_420mM_20000waters_paramchem_B3LYP_ESP_charges_ECC_475_30.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
+
+
+
+
+
+

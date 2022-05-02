@@ -19,7 +19,7 @@ set datafile commentschar "@#$%&"
 set multiplot layout 6,3 
 
 
-set xlabel "Time [nm]" font 'Times,16'
+set xlabel "Time [ns]" font 'Times,16'
 set ylabel "Bound particles"  font 'Times,16'
 
 set style fill transparent solid 0.25 # partial transparency
@@ -115,7 +115,8 @@ set title "70mM, ParamChem"
 plot "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_0-947.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_947-1422.txt" using ($0/10+947):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_1422-1667.txt" using ($0/10+1422):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
-"etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_19900waters_paramchem_450_15.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle 
+"etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_1667_1846.txt" using ($0/10+1422):1 with lines lw 2 lc rgb("#ff00ff") notitle ,\
+"etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_1846-2336.txt" using ($0/10+1846):1 with lines lw 2 lc rgb("#ff00ff") notitle ,\
 
  
 
@@ -170,7 +171,7 @@ set yrange [0:130]
 set title "200 mM, ParamChem"
 plot   "etidocaine_POPC_CHARMM_298K_Cl_countra_200mM_177600waters_paramchem_450_15_0-484.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
  "etidocaine_POPC_CHARMM_298K_Cl_countra_200mM_177600waters_paramchem_450_15_484-1484.txt" using ($0/10+484):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
-
+"etidocaine_POPC_CHARMM_298K_Cl_countra_200mM_177600waters_paramchem_450_15_1484-1974.txt" using ($0/10+1484):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
 
 
 @M13
