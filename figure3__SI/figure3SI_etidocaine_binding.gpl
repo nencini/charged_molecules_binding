@@ -117,6 +117,7 @@ plot "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_
 "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_1422-1667.txt" using ($0/10+1422):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_1667_1846.txt" using ($0/10+1422):1 with lines lw 2 lc rgb("#ff00ff") notitle ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_1846-2336.txt" using ($0/10+1846):1 with lines lw 2 lc rgb("#ff00ff") notitle ,\
+"etidocaine_POPC_CHARMM_298K_Cl_countra_70mM_177600waters_paramchem_450_15_2336-2537.txt" using ($0/10+2336):1 with lines lw 2 lc rgb("#ff00ff") notitle ,\
 
  
 
@@ -153,8 +154,9 @@ set title "140mM, ParamChem"
 plot "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_20000waters_paramchem_450_15.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_20000waters_paramchem_1314_450_15.txt" using ($0/10+1314):1 with lines lw 2 lc rgb("#ff0000") notitle "0.45 nm, 15 atom" ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_20000waters_paramchem_overbind_450_15.txt" using ($0/10):1 with lines lw 2 lc rgb("#0000ff") notitle "0.575 nm, 28 atom" ,\
-"etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_simulation2_run2022_450_15.txt" using ($0/10):1 with lines lw 2 lc rgb("#770077") notitle "80 nm" ,\
-"etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_450_15.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff00ff") notitle "80 nm" ,\
+"etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_simulation2_run2022_450_15.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff00ff") notitle "80 nm" ,\
+
+#"etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_450_15.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff00ff") notitle "80 nm" ,\
 
 
 @M09 #- coming
@@ -172,7 +174,7 @@ set title "200 mM, ParamChem"
 plot   "etidocaine_POPC_CHARMM_298K_Cl_countra_200mM_177600waters_paramchem_450_15_0-484.txt" using ($0/10):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
  "etidocaine_POPC_CHARMM_298K_Cl_countra_200mM_177600waters_paramchem_450_15_484-1484.txt" using ($0/10+484):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
 "etidocaine_POPC_CHARMM_298K_Cl_countra_200mM_177600waters_paramchem_450_15_1484-1974.txt" using ($0/10+1484):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
-
+"etidocaine_POPC_CHARMM_298K_Cl_countra_200mM_177600waters_paramchem_450_15_1974-2166.txt" using ($0/10+1974):1 with lines lw 2 lc rgb("#ff00ff") notitle "0.45 nm, 15 atom" ,\
 
 @M13
 
