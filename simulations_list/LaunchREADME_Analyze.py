@@ -30,11 +30,15 @@ folder_path="/media/nenciric/Ricky20201/2020/simulations/"
 systems=["etidocaine","TPP","SMS","dibucaine"]
 
 
+folder_path="/home/ricky/Documents/from_work/MD/simulations/production_run/"
+systems=["testing_density_center"]
+
 for file in os.listdir(folder_path):
     input_corr_file = folder_path+os.fsdecode(file)
     for system in systems:
         if fnmatch.fnmatch(os.fsdecode(file), "*"+system+"*"):
             newcomer=AT.AnalysisToolbox(folder_path,os.fsdecode(file),system,["ORDER_PARAMETER","BOX_DIMENSIONS"])
+            #newcomer=AT.AnalysisToolbox(folder_path,os.fsdecode(file),"etidocaine",["ORDER_PARAMETER","BOX_DIMENSIONS"])
             newcomer.add_new_folders()
-            newcomer.analysis_module()
+            #newcomer.analysis_module()
 
