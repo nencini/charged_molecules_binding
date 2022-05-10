@@ -287,7 +287,7 @@ set xtics 1 font 'Times,20'
 set ytics font 'Times,20'
 plot  "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_simulation2_run2022_density.out" using 1:4 with line ls 1 notitle "CHARMM36 Parameters 1",\
       "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_paramchem_ECC_run2022_density.out" using 1:4 with line ls 2 notitle "CHARMM36 Parameters 1",\
-      "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_413_density.out" using 1:4 with line ls 7 lw 3  lc 1 notitle "CHARMM36 Parameters 1",\
+      "etidocaine_POPC_CHARMM_298K_Cl_countra_140mM_177600waters_413_ETI.finalDensity" using 1:2 with line ls 7 lw 3  lc 1 notitle "CHARMM36 Parameters 1",\
       
      
       

@@ -30,6 +30,10 @@ folder_path="/media/nenciric/Ricky20201/2020/simulations/"
 systems=["etidocaine","TPP","SMS","dibucaine"]
 
 
+folder_path="/DATA/hector/200POPC_PN_NAs150mM/"
+systems=["PN_m"]
+
+
 for file in os.listdir(folder_path):
     input_corr_file = folder_path+os.fsdecode(file)
     for system in systems:
