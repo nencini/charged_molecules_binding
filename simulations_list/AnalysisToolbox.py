@@ -515,10 +515,11 @@ class AnalysisToolbox:
         with OrderParameters class instances
         """
         
+        ndx=self.path+self.name+"/"+ self.readme["FILES"]["ndx"]["NAME"]
         print("Order parameter will be analyzed")
         print("Make molecules whole in the trajectory")
-        os.system('echo POPC | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o lipids.gro -pbc mol -b 0 -e 0 ' ) # -b ' + str(EQtime))
-        os.system('echo POPC | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o ' + self.output + ' -pbc mol ' ) # -b ' + str(EQtime))
+        os.system('echo POPC | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o lipids.gro -pbc mol -b 0 -e 0 -n ' + ndx ) # -b ' + str(EQtime))
+        os.system('echo POPC | gmx trjconv -f ' + self.trajectory + ' -s ' + self.topology_tpr + ' -o ' + self.output + ' -pbc mol -n '+ ndx ) # -b ' + str(EQtime))
         self.mol = mda.Universe('lipids.gro',self.output+'.xtc')
         self.Nframes=len(self.mol.trajectory)-(int(self.readme['BINDINGEQ'])/int(self.readme["FILES"]['xtc']['TIMESTEP']))
         

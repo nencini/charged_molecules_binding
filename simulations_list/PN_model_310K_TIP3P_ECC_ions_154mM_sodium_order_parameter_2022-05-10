@@ -1,0 +1,7 @@
+Order parameter analysis 
+Analyzed from 100.0 to 1000.1 ns. With saving frequency 100 ps.# OP_name    resname    atom1    atom2    OP_mean   OP_stddev   OP_err.est. 
+#--------------------------------------------------------------------------------------------
+alpha1       POPC       C11      H11A     0.01594   0.00879     0.00062 
+alpha2       POPC       C11      H11B     0.01687   0.00804     0.00057 
+beta1        POPC       C12      H12A    -0.06488   0.00739     0.00052 
+beta2        POPC       C12      H12B    -0.06219   0.00779     0.00055 
