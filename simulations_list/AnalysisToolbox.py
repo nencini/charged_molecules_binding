@@ -138,15 +138,22 @@ def go_through_simulation(recieved_self):
             recieved_self.readme = yaml.load(yaml_file, Loader=yaml.FullLoader)
      
     sim=check_for_latest_files(recieved_self)
-       
-    Nframes=len(recieved_self.mol.trajectory)
-    timestep = recieved_self.mol.trajectory.dt
-    trj_length = Nframes * timestep
-    begin_time=recieved_self.mol.trajectory.time
-        
-    sim["FILES"]["xtc"]['TIMESTEP'] = timestep
-    sim["FILES"]['xtc']['BEGIN'] = begin_time
-
+    
+    
+    #### Does this NEED to be done? it is probably already done in the check_for_latest_files
+    #try:
+    #    mol = mda.Universe(recieved_self.path+recieved_self.name+ "/"+sim["FILES"]["gro"]["NAME"],recieved_self.path+recieved_self.name+ "/"+sim["FILES"]["xtc"]["NAME"])
+    #    Nframes=len(mol.trajectory)
+    #    timestep = mol.trajectory.dt
+    #    trj_length = Nframes * timestep
+    #    begin_time = mol.trajectory.time
+    #    
+    #    sim["FILES"]["xtc"]['TIMESTEP'] = timestep
+    #    sim["FILES"]['xtc']['BEGIN'] = begin_time
+    #except  Exception as e: 
+    #    print(e)
+    #    print("Some issues with trajectory")
+    #### END OF THE PART that may be maybe deleted???
         
     if not 'BINDINGEQ' in sim:
         sim['BINDINGEQ'] = input("Biding of {} eqilibrated after [ps] \n".format(recieved_self.name))
@@ -154,34 +161,39 @@ def go_through_simulation(recieved_self):
         
     if not 'TEMPERATURE' in sim:
         #get temperature from tpr; taken from AddData.py by Anne Kiirikki
-        topology_tpr= recieved_self.path + recieved_self.name+ "/" + recieved_self.name+ ".tpr"
+        topology_tpr= recieved_self.path+recieved_self.name+ "/"+sim["FILES"]["tpr"]["NAME"]
         file1 =  'temporary_tpr.txt'
 
         print("Exporting information with gmx dump")  
+        
+        try:
+            os.system('echo System | gmx dump -s '+ topology_tpr + ' > '+file1)
 
-        os.system('echo System | gmx dump -s '+ topology_tpr + ' > '+file1)
-
-        with open(file1, 'rt') as tpr_info:
-            for line in tpr_info:
-                if 'ref-t' in line:
-                    sim['TEMPERATURE']=float(line.split()[1])
-        os.system('rm '+file1)
+            with open(file1, 'rt') as tpr_info:
+                for line in tpr_info:
+                    if 'ref-t' in line:
+                        sim['TEMPERATURE']=float(line.split()[1])
+            os.system('rm '+file1)
+        except:
+            print("Cannot read tpr and get temperature")
   
     
     if not 'COMPOSITION' in sim:
         sim["COMPOSITION"]={}
-        top_file= recieved_self.path + recieved_self.name+ "/" + recieved_self.name+ ".top"
-        with open(top_file,"r") as f:
-            molecules_list = False
-            for line in f.readlines():
-                if molecules_list:
-                    if not line.startswith(";"):
-                        items = line.split()
-                        if len(items)==2:
-                            sim["COMPOSITION"][items[0]]=items[1]
-                elif line.startswith("[ molecules ]"):
-                    molecules_list = True
-
+        top_file= sim["FILES"]["top"]["NAME"]
+        try:
+            with open(top_file,"r") as f:
+                molecules_list = False
+                for line in f.readlines():
+                    if molecules_list:
+                        if not line.startswith(";"):
+                            items = line.split()
+                            if len(items)==2:
+                                sim["COMPOSITION"][items[0]]=items[1]
+                    elif line.startswith("[ molecules ]"):
+                        molecules_list = True
+        except:
+            print("Cannot read top file and assign the composition")
         
 
 
@@ -202,28 +214,38 @@ def check_for_latest_files(recieved_self):
     for fileU in files_to_consider:
         if not fileU in sim["FILES"]:
             sim["FILES"][fileU]={}
-
-        file_adress = recieved_self.path+recieved_self.name+"/"+recieved_self.name+"."+fileU
-        sim["FILES"][fileU]["NAME"] = recieved_self.name+"."+fileU
+            
+        folder_path=  recieved_self.path+recieved_self.name+"/"  
+        for file in os.listdir(folder_path):
+            if fnmatch.fnmatch(os.fsdecode(file), "*."+fileU):
+                file_adress = recieved_self.path+recieved_self.name+"/"+os.fsdecode(file)
+                sim["FILES"][fileU]["NAME"] = os.fsdecode(file)
+                timepre=os.path.getmtime(file_adress)
+                file_mod = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timepre))
+                sim["FILES"][fileU]["SIZE"]=os.path.getsize(file_adress)/1048576
+                sim["FILES"][fileU]["MODIFIED"] = file_mod
     
         try:
-            timepre=os.path.getmtime(file_adress)
-            file_mod = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timepre))
-            sim["FILES"][fileU]["SIZE"]=os.path.getsize(file_adress)/1048576
-            sim["FILES"][fileU]["MODIFIED"] = file_mod
+            print(sim["FILES"][fileU]["NAME"])
         except:
+            sim["FILES"][fileU]["NAME"]= "none"
             sim["FILES"][fileU]["SIZE"]= "none"
             sim["FILES"][fileU]["MODIFIED"] = "none"
         
-    Nframes=len(recieved_self.mol.trajectory)
-    timestep = recieved_self.mol.trajectory.dt
-    trj_length = Nframes * timestep
-    begin_time=recieved_self.mol.trajectory.time
+    try:
+        mol = mda.Universe(folder_path+sim["FILES"]["gro"]["NAME"],folder_path+sim["FILES"]["xtc"]["NAME"])
+        Nframes=len(mol.trajectory)
+        timestep = mol.trajectory.dt
+        trj_length = Nframes * timestep
+        begin_time=mol.trajectory.time
         
-    sim["FILES"]["xtc"]['SAVING_FREQUENCY'] = timestep
-    sim["FILES"]['xtc']['LENGTH'] = trj_length
-    sim["FILES"]['xtc']['BEGIN'] = begin_time
-    print("Got into checking")
+        sim["FILES"]["xtc"]['SAVING_FREQUENCY'] = timestep
+        sim["FILES"]['xtc']['LENGTH'] = trj_length
+        sim["FILES"]['xtc']['BEGIN'] = begin_time
+    except:
+        print("gro or xtc do not exist in the folder, or they do not match")
+    
+    print("Checking for new trajectories within defiened conditions is succesfully finished")
     print(recieved_self.path)
     
     return sim
@@ -236,8 +258,8 @@ class AnalysisToolbox:
         self.topology = path+name+"/"+name+".gro"
         self.topology_tpr = path+name+"/"+name+".tpr"
         self.trajectory = path+name+"/"+name+".xtc"
-        self.mol = mda.Universe(self.topology,self.trajectory)
-        print(self.mol)
+        #self.mol = mda.Universe(self.topology,self.trajectory)
+        #print(self.mol)
         self.output = name
         self.today = str(date.today())
         self.path=path
